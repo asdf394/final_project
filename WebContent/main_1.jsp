@@ -41,8 +41,8 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           
-          <li><a href="#loginform">로그인</a></li>
-          <li><a href="#loginform">회원가입</a></li>
+          <li><a href="login.jsp">로그인</a></li>
+          <li><a href="join.jsp">회원가입</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -53,7 +53,7 @@
     <div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
       <h1 class="mb-4 pb-0">영업중 부족한 차량  <br>구입 해야되나 고민말고<span>빌려쓰세요</span></h1>
       <p class="mb-4 pb-0"></p>
-      <a href="#" class="about-btn scrollto">로그인 </a>
+      <a href="login.jsp" class="about-btn scrollto">로그인 </a>
     </div>
     
   </section><!-- End Intro Section -->
