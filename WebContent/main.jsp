@@ -33,6 +33,8 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <style type="text/css">
+/*rent form */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -302,6 +304,9 @@ button:hover {
 .col-1-8 {
   width: 12.5%;
 }
+
+/* table form */
+
 </style>
 </head>
 
