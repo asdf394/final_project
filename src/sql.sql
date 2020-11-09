@@ -32,9 +32,9 @@ constraint car_rent_ck check(rent in(0, 1))
 
 ); 
 
-insert into rent_mem(id, pw, name, companyName, phone) values (rent_id_seq.nextval, 
-rent_seq.nextval, rent_seq.nextval, '실험', '0')
+insert into rent_member(id, pw, name, companyName, phone) values (rent_id_seq.nextval, 
 
+rent_seq.nextval, rent_seq.nextval, '실험', '0')
 select * from rent_member
 select * from CAR_INFO;
 select * from CAR_INFO where company_id = 1;
