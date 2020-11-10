@@ -1,6 +1,7 @@
 drop table car_info;
 drop table rent_member;
 drop table rent_member cascade constraint;
+drop table rent_car cascade constraint;
 drop sequence rent_id_seq;
 
 create table rent_member(
@@ -31,6 +32,20 @@ constraint car_rent_mem_co_id_fk foreign key(company_id) references rent_member(
 constraint car_rent_ck check(rent in(0, 1))
 
 ); 
+
+create table rent_car(
+car_num varchar2(150),
+request_company_id number,
+response_company_id number,
+first_day varchar2(50),
+last_day varchar2(50),
+comments varchar2(200),
+
+constraint rent_car_pk primary key(car_num, request_company_id),
+constraint rent_car_mem_com_id_fk1 foreign key(request_company_id) references rent_member(company_id),
+constraint rent_car_info_num_fk2 foreign key(car_num) references car_info(car_num)
+);
+
 
 insert into rent_member(id, pw, name, companyName, phone) values (rent_id_seq.nextval, 
 
