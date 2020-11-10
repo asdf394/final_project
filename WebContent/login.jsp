@@ -92,8 +92,8 @@ body {
 	transition: .5s;
 }
 
-.login-box .user-box input:focus ~ label, .login-box .user-box input:valid 
-	~ label {
+.login-box .user-box input:focus ~ label, 
+.login-box .user-box input:valid ~ label {
 	top: -20px;
 	left: 0;
 	color: #03e9f4;

@@ -408,7 +408,7 @@ td {
 					%>
 					<li><a href="#schedule">차량대여</a></li>
 					<li><a href="#">문의하기</a></li>
-					<li><a href="#">내정보</a></li>
+					<li><a href="mypage.jsp">내정보</a></li>
 					<li><a href="LogoutService.do">로그아웃</a></li>
 					<%
 						}

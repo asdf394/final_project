@@ -29,6 +29,14 @@ public class MemberDTO {
 		this.phone = phone;
 		this.location = location;
 	}
+	public MemberDTO(String email, String pw, String companyName, String phone, String location) {
+		super();
+		this.email = email;
+		this.pw = pw;
+		this.companyName = companyName;
+		this.phone = phone;
+		this.location = location;
+	}
 
 	@Override
 	public String toString() {

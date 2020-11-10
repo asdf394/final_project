@@ -147,7 +147,7 @@ input[type="submit"].login:focus{outline: none;}
 				<h2>회원가입</h2>
 				<form action="JoinService.do" method="post">
 					<div class="user-box">
-						<input type="text" name="eamil" required=""> <label>이메일</label>
+						<input type="text" name="email" required=""> <label>이메일</label>
 					</div>
 					<div class="user-box">
 						<input type="password" name="pw" required=""> <label>비밀번호</label>

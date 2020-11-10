@@ -139,5 +139,32 @@ public class MemberDAO {
 		
 		return company;
 	}
+
+	public int update(MemberDTO dto) {
+		int cnt = 0;
+
+		getConn();
+
+		String sql = "update rent_member set pw = ?, companyName = ?,  location = ?, phone = ? where id = ?"; // 멤버 테이블 작성
+
+		try {
+			pst = conn.prepareStatement(sql);
+
+			pst.setString(1, dto.getPw());
+			pst.setString(2, dto.getCompanyName());
+			pst.setString(3, dto.getLocation());
+			pst.setString(4, dto.getPhone());
+			pst.setString(5, dto.getEmail());
+
+			cnt = pst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return cnt;
+	}
 	
 }

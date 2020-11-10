@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.cont.JoinService;
 import com.cont.LoginService;
 import com.cont.LogoutService;
+import com.cont.UpdateService;
 import com.DTO.MemberDTO;
 
 @WebServlet("*.do")
@@ -29,6 +30,7 @@ public class FrontController extends HttpServlet {
 		map.put("LogoutService.do",new LogoutService());
 		map.put("LoginService.do",new LoginService());
 		map.put("JoinService.do",new JoinService());
+		map.put("UpdateService.do",new UpdateService());
 	}
 
 
