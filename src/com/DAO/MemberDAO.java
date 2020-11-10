@@ -49,12 +49,15 @@ public class MemberDAO {
 		try {
 			getConn();
 
-			String sql = "insert into rent_member values(?,?,?)";
+			String sql = "insert into rent_member values(rent_id_seq.nextval,?,?,?,?,?,?)";
 			pst = conn.prepareStatement(sql);
-
+	
 			pst.setString(1, dto.getEmail());
 			pst.setString(2, dto.getPw());
 			pst.setString(3, dto.getName());
+			pst.setString(4, dto.getCompanyName());
+			pst.setString(5, dto.getPhone());
+			pst.setString(6, dto.getLocateion());
 
 			cnt = pst.executeUpdate();
 
@@ -135,5 +138,5 @@ public class MemberDAO {
 		
 		return company;
 	}
-
+	
 }

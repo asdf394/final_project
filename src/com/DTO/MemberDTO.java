@@ -18,6 +18,16 @@ public class MemberDTO {
 		this.pw = pw;
 		this.name = name;
 	}
+	
+	public MemberDTO(String email, String pw, String name, String companyName, String phone, String locateion) {
+		super();
+		this.email = email;
+		this.pw = pw;
+		this.name = name;
+		this.companyName = companyName;
+		this.phone = phone;
+		this.locateion = locateion;
+	}
 
 	@Override
 	public String toString() {

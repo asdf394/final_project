@@ -14,7 +14,11 @@ public class JoinService implements Command{
 		String email = request.getParameter("email");
 		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");
-		MemberDTO dto = new MemberDTO(email, pw, name);
+		String companyName = request.getParameter("companyName");
+		String phone = request.getParameter("phone");
+		String locateion = request.getParameter("locateion");
+
+		MemberDTO dto = new MemberDTO(email, pw, name, companyName, phone, locateion);
 		MemberDAO dao = new MemberDAO();
 		int cnt = dao.Join(dto);
 		if (cnt > 0) {
