@@ -1,16 +1,17 @@
 package com.DTO;
 
 public class MemberDTO {
-	private String company_id;	
+	private String company_id;
 	private String email;
 	private String pw;
-	private String name;	
-	private String companyName;	//업체명
+	private String name;
+	private String companyName; // 업체명
 	private String phone;
-	private String companyImg;	//
-	private String locateion;	//차 주소
-	
-	public MemberDTO() {}
+	private String companyImg; //
+	private String location; // 차 주소
+
+	public MemberDTO() {
+	}
 
 	public MemberDTO(String email, String pw, String name) {
 		super();
@@ -18,29 +19,38 @@ public class MemberDTO {
 		this.pw = pw;
 		this.name = name;
 	}
-	
-	public MemberDTO(String email, String pw, String name, String companyName, String phone, String locateion) {
+
+	public MemberDTO(String email, String pw, String name, String companyName, String phone, String location) {
 		super();
 		this.email = email;
 		this.pw = pw;
 		this.name = name;
 		this.companyName = companyName;
 		this.phone = phone;
-		this.locateion = locateion;
+		this.location = location;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberDTO [company_id=" + company_id + ", pw=" + pw + ", name=" + name + ", companyName=" + companyName + ", phone="
-				+ phone + ", email=" + email + ", companyImg=" + companyImg + ", locateion=" + locateion + "]";
+		return "MemberDTO [company_id=" + company_id + ", pw=" + pw + ", name=" + name + ", companyName=" + companyName
+				+ ", phone=" + phone + ", email=" + email + ", companyImg=" + companyImg + ", locateion=" + location
+				+ "]";
 	}
 
-	public String getCompany_Id() {
+	public String getCompany_id() {
 		return company_id;
 	}
 
-	public void setCompany_Id(String company_id) {
+	public void setCompany_id(String company_id) {
 		this.company_id = company_id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPw() {
@@ -75,14 +85,6 @@ public class MemberDTO {
 		this.phone = phone;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getCompanyImg() {
 		return companyImg;
 	}
@@ -91,14 +93,12 @@ public class MemberDTO {
 		this.companyImg = companyImg;
 	}
 
-	public String getLocateion() {
-		return locateion;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setLocateion(String locateion) {
-		this.locateion = locateion;
+	public void setLocation(String location) {
+		this.location = location;
 	}
-	
 
-	
 }

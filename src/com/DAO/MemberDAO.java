@@ -57,7 +57,7 @@ public class MemberDAO {
 			pst.setString(3, dto.getName());
 			pst.setString(4, dto.getCompanyName());
 			pst.setString(5, dto.getPhone());
-			pst.setString(6, dto.getLocateion());
+			pst.setString(6, dto.getLocation());
 
 			cnt = pst.executeUpdate();
 

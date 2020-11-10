@@ -128,15 +128,15 @@ input[type="submit"].login:focus{outline: none;}
 		<div class="container">
 
 			<div id="logo" class="pull-left">
-				<a href="main1.jsp" class="scrollto"><img
+				<a href="main.jsp" class="scrollto"><img
 					src="assets/img/carlogo.png" alt="" title=""></a>
 			</div>
 
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
 
-					<li><a href="#loginform">로그인</a></li>
-					<li><a href="#loginform">회원가입</a></li>
+					<li><a href="login.jsp">로그인</a></li>
+					<li><a href="join.jsp">회원가입</a></li>
 				</ul>
 			</nav>
 			<!-- #nav-menu-container -->
