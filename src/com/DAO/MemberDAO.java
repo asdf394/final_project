@@ -43,6 +43,28 @@ public class MemberDAO {
 			e2.printStackTrace();
 		}
 	}
+	
+	public int Join(MemberDTO dto) {
+
+		try {
+			getConn();
+
+			String sql = "insert into rent_member values(?,?,?)";
+			pst = conn.prepareStatement(sql);
+
+			pst.setString(1, dto.getEmail());
+			pst.setString(2, dto.getPw());
+			pst.setString(3, dto.getName());
+
+			cnt = pst.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
 
 	public MemberDTO login(MemberDTO dto) {
 
@@ -52,7 +74,7 @@ public class MemberDAO {
 
 			getConn();
 
-			String sql = "select * from rent_mem where email = ? and pw = ?";   //멤버 테이블 작성
+			String sql = "select * from rent_member where email = ? and pw = ?";   //멤버 테이블 작성
 			
 			
 			pst = conn.prepareStatement(sql);

@@ -12,6 +12,13 @@ public class MemberDTO {
 	
 	public MemberDTO() {}
 
+	public MemberDTO(String email, String pw, String name) {
+		super();
+		this.email = email;
+		this.pw = pw;
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberDTO [company_id=" + company_id + ", pw=" + pw + ", name=" + name + ", companyName=" + companyName + ", phone="

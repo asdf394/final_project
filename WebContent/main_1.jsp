@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="com.DTO.MemberDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +31,9 @@
 
 </head>
 <body>
+	<%
+		MemberDTO info = (MemberDTO) session.getAttribute("info");
+	%>
   <!-- ======= Header ======= -->
   <header id="header">
     <div class="container">
