@@ -71,7 +71,7 @@ public class MemberDAO {
 
 	public MemberDTO login(MemberDTO dto) {
 
-		MemberDTO rdto = new MemberDTO();
+		MemberDTO rdto = null;
 
 		try {
 
@@ -90,9 +90,12 @@ public class MemberDAO {
 			if (rs.next()) {
 				String email = rs.getString(1);
 				String pw = rs.getString(2);
-
+				rdto = new MemberDTO();
 				rdto.setEmail(email);
 				rdto.setPw(pw);
+				System.out.println("db에 값이 존재"+email);
+			}else {
+				System.out.println("db에 값이 없음");
 			}
 
 		} catch (Exception e) {

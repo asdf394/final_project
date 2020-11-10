@@ -392,7 +392,7 @@ td {
 		<div class="container">
 
 			<div id="logo" class="pull-left">
-				<a href="main.html" class="scrollto"><img
+				<a href="main.jsp" class="scrollto"><img
 					src="assets/img/carlogo.png" alt="" title=""></a>
 			</div>
 
