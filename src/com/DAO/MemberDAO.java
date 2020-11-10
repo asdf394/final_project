@@ -48,7 +48,6 @@ public class MemberDAO {
 
 		try {
 			getConn();
-
 			String sql = "insert into rent_member(company_id,email,pw,name,companyName,location,phone)"
 					+ " values(rent_id_seq.nextval,?,?,?,?,?,?)";
 			pst = conn.prepareStatement(sql);
