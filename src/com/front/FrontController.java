@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.cont.JoinService;
 import com.cont.LoginService;
 import com.cont.LogoutService;
 import com.DTO.MemberDTO;
@@ -27,7 +28,7 @@ public class FrontController extends HttpServlet {
 		map = new HashMap<String, Command>();
 		map.put("LogoutService.do",new LogoutService());
 		map.put("LoginService.do",new LoginService());
-		map.put("JoinService.do",new LoginService());
+		map.put("JoinService.do",new JoinService());
 	}
 
 

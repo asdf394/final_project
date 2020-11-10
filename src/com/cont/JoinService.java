@@ -10,7 +10,7 @@ import com.DTO.MemberDTO;
 public class JoinService implements Command{
 
 	public String execut(HttpServletRequest request, HttpServletResponse response) {
-		
+		System.out.println("조인서비스 실행");
 		String email = request.getParameter("email");
 		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");

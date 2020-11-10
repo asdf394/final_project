@@ -94,8 +94,6 @@ public class MemberDAO {
 				rdto.setEmail(email);
 				rdto.setPw(pw);
 				System.out.println("db에 값이 존재"+email);
-			}else {
-				System.out.println("db에 값이 없음");
 			}
 
 		} catch (Exception e) {
