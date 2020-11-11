@@ -65,3 +65,5 @@ INCREMENT BY 1;
 select * from car_info where  rent=0 and company_id = (select company_id from rent_member where email like '2')
 
 select * from rent_member;
+
+select * from rent_car;
