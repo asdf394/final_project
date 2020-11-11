@@ -115,8 +115,8 @@ input[type="submit"].login:focus {
 		<div class="container">
 
 			<div id="logo" class="pull-left">
-				<a href="main.html" class="scrollto"><img
-					src="assets/img/carlogo.png" alt="" title=""></a>
+				<a href="main.jsp" class="scrollto">
+				<img src="assets/img/carlogo.png" alt="" title=""></a>
 			</div>
 
 			<nav id="nav-menu-container">
@@ -237,10 +237,7 @@ input[type="submit"].login:focus {
 					data-aos="fade-up" data-aos-delay="200">
 
 					<!-- Schdule Day 1 -->
-					<div role="tabpanel" class="col-lg-9 tab-pane fade show active"
-						id="day-1">
-
-
+					<div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
 						<div class="tbl-header">
 							<table cellpadding="0" cellspacing="0" border="0">
 								<thead>

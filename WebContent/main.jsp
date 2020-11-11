@@ -342,7 +342,6 @@ td {
 @import
 	url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 
-
 /* follow me template */
 .made-with-love {
 	margin-top: 40px;
@@ -535,44 +534,49 @@ td {
 								</form>
 							</div>
 							<%
-							RentDAO dao = new RentDAO();
-							ArrayList<RentDTO> list = dao.viewall();							
+								RentDAO dao = new RentDAO();
+							ArrayList<RentDTO> list = dao.viewall();
 							%>
-							
-							
+
+
 							<h1>Fixed Table header</h1>
-							<div class="tbl-header">
-								<table cellpadding="0" cellspacing="0" border="0">
-									<thead>
-										<tr>
-											<th>차번호</th>
-											<th>요청자</th>
-											<th>렌트일시</th>
-											<th>반납일시</th>
-											<th>특이사항</th>
-											<th>요청수락</th>
-										</tr>
-									</thead>
-								</table>
-							</div>
-							<div class="tbl-content">
-								<table cellpadding="0" cellspacing="0" border="0">
-									<tbody>
-										<%
-											for(int i =0 ;i<list.size();i++){
-										%>
-										<tr>
-											<td><%=list.get(i).getCar_num()%></td>
-											<td><%=list.get(i).getRequest_company_id()%></td>
-											<td><%=list.get(i).getFirst_day()%></td>
-											<td><%=list.get(i).getLast_day()%></td>
-											<td><%=list.get(i).getComments()%></td>
-											<td><input type="button" value="수락"></td>									
-										</tr>
-										<%}%>
-									</tbody>
-								</table>
-							</div>
+							<form action="#" method="get">
+								<div class="tbl-header">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<thead>
+											<tr>
+												<th>차번호</th>
+												<th>요청자</th>
+												<th>렌트일시</th>
+												<th>반납일시</th>
+												<th>특이사항</th>
+												<th>요청수락</th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+								<div class="tbl-content">
+
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tbody>
+											<%
+												for (int i = 0; i < list.size(); i++) {
+											%>
+											<tr>
+												<td><%=list.get(i).getCar_num()%></td>
+												<td><%=list.get(i).getRequest_company_id()%></td>
+												<td><%=list.get(i).getFirst_day()%></td>
+												<td><%=list.get(i).getLast_day()%></td>
+												<td><%=list.get(i).getComments()%></td>
+												<td><input type="submit" value="수락"></td>
+											</tr>
+											<%
+												}
+											%>
+										</tbody>
+									</table>
+								</div>
+							</form>
 			</section>
 			<!-- End Schedule Section -->
 		</main>
