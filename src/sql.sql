@@ -39,8 +39,8 @@ request_company_id number,
 response_company_id number,
 first_day varchar2(50),
 last_day varchar2(50),
-comments varchar2(200),
-
+comments varchar2(200)
+);
 constraint rent_car_pk primary key(car_num, request_company_id),
 constraint rent_car_mem_com_id_fk1 foreign key(request_company_id) references rent_member(company_id),
 constraint rent_car_info_num_fk2 foreign key(car_num) references car_info(car_num)
@@ -48,8 +48,11 @@ constraint rent_car_info_num_fk2 foreign key(car_num) references car_info(car_nu
 
 
 insert into rent_member(id, pw, name, companyName, phone) values (rent_id_seq.nextval, 
-
 rent_seq.nextval, rent_seq.nextval, '실험', '0')
+
+insert into rent_car(car_num, request_company_id, response_company_id, first_day, last_day, comments) values (2,2,null,'2020-11-10','2020-11-11','경유');
+
+select * from rent_car
 select * from rent_member
 select * from CAR_INFO;
 select * from CAR_INFO where company_id = 1;

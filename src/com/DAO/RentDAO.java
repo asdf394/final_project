@@ -54,7 +54,7 @@ public class RentDAO {
 		try {
 
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, dto.getCar_num());
+			pst.setInt(1, dto.getCar_num());
 			pst.setInt(2, dto.getRequest_company_id());
 			pst.setString(3, dto.getFirst_day());
 			pst.setString(4, dto.getLast_day());
@@ -83,4 +83,35 @@ public class RentDAO {
 		return cnt;
 	}
 
-}
+	public ArrayList<RentDTO> viewall() {
+		ArrayList<RentDTO> list = new ArrayList<RentDTO>();
+		
+		getConn();
+		
+		String sql = "select * from rent_car";
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			while (rs.next()) {
+				int car_num = rs.getInt(1);
+				int request_company_id = rs.getInt(2);
+				int response_company_id = rs.getInt(3);
+				String first_day = rs.getString(4);
+				String last_day = rs.getString(5);
+				String comments = rs.getString(6);
+
+				RentDTO dto = new RentDTO(car_num, request_company_id, response_company_id, first_day, last_day, comments);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+	
+	}
+

@@ -1,7 +1,7 @@
 package com.DTO;
 
 public class RentDTO {
-	private String car_num; // 번호판
+	private int car_num; // 번호판
 	private int request_company_id; // 년식
 	private int response_company_id; // 년식
 	private String first_day; // 년식
@@ -12,7 +12,7 @@ public class RentDTO {
 
 	}
 
-	public RentDTO(String car_num, int request_company_id, int response_company_id, String first_day, String last_day,
+	public RentDTO(int car_num, int request_company_id, int response_company_id, String first_day, String last_day,
 			String comments) {
 		super();
 		this.car_num = car_num;
@@ -23,11 +23,20 @@ public class RentDTO {
 		this.comments = comments;
 	}
 
-	public String getCar_num() {
+	public RentDTO(int car_num, int request_company_id, String first_day, String last_day, String comments) {
+		super();
+		this.car_num = car_num;
+		this.request_company_id = request_company_id;
+		this.first_day = first_day;
+		this.last_day = last_day;
+		this.comments = comments;
+	}
+
+	public int getCar_num() {
 		return car_num;
 	}
 
-	public void setCar_num(String car_num) {
+	public void setCar_num(int car_num) {
 		this.car_num = car_num;
 	}
 

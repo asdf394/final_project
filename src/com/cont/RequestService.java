@@ -24,6 +24,7 @@ public class RequestService implements Command{
 		RentDTO dto = new RentDTO();
 		RentDAO dao = new RentDAO();
 		int cnt = dao.requestCar(dto);
+		
 		if (cnt > 0) {
 			System.out.println("차량요청 성공");
 		} else {
