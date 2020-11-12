@@ -32,7 +32,11 @@ rent_type varchar2(50),
 rent_status number, --0:요청중, 1:대여중
 
 constraint rent_car_req_num_pk primary key(req_num),
-constraint rent_car_rent_status_ck check(rent_status in(0, 1)))
+constraint rent_car_rent_status_ck check(rent_status in(0, 1)),
+constraint car_rent_mem_co_id_fk1 foreign key(request_company) references rent_member(companyName),
+constraint car_rent_mem_co_id_fk2 foreign key(response_company) references rent_member(companyName)
+
+)
 
 
 insert into rent_member(id, pw, name, companyName, phone) values (rent_id_seq.nextval, 
