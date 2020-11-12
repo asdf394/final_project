@@ -168,10 +168,7 @@ input[type="submit"].login:focus {
 		</div>
 	</section>
 	<!-- End Intro Section -->
-
 	<main id="main">
-
-
 		<!-- ======= Speakers Section ======= -->
 		<section id="predict" style="margin-bottom: 100px;">
 			<div class="container" data-aos="fade-up" style="padding-top: 100px;">
