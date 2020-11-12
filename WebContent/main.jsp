@@ -1,3 +1,4 @@
+<%@page import="com.DAO.MemberDAO"%>
 <%@page import="com.DTO.RentDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.DAO.RentDAO"%>
@@ -478,26 +479,24 @@ td {
 							<!-- Schdule Day 1 -->
 							<div role="tabpanel" class="col-lg-9 tab-pane fade show active"
 								id="day-1">
-
 								<form action="">
 									<!--  General -->
 									<div class="form-group">
 										<h2 class="heading">렌트 상세정보</h2>
 										<div class="controls">
-											<input type="text" id="name" class="floatLabel" name="name">
-											<label for="name">상호명</label>
+											<%-- <input type="text" id="name" class="floatLabel" name="name" value="<%=info.getCompanyName()%>">
+											<label for="name"><%=info.getCompanyName()%></label> --%>
 										</div>
 										<div class="controls">
-											<input type="text" id="email" class="floatLabel" name="email">
+											<input type="text" id="email" class="floatLabel" name="email" value="<%=info.getCompanyName()%>">
 											<label for="email">이메일</label>
 										</div>
 										<div class="controls">
-											<input type="tel" id="phone" class="floatLabel" name="phone">
+											<input type="tel" id="phone" class="floatLabel" name="phone" value="<%=info.getCompanyName()%>">
 											<label for="phone">전화번호</label>
 										</div>
 										<div class="controls">
-											<input type="text" id="country" class="floatLabel"
-												name="country"> <label for="country">상세주소</label>
+											<input type="text" id="country" class="floatLabel" name="country"> <label for="country">상세주소</label>
 										</div>
 										<!--  Details -->
 										<div class="form-group">
@@ -521,16 +520,54 @@ td {
 												</div>
 											</div>
 											<div class="grid">
-												<p class="info-text">하고싶은 말</p>
-												<br>
-												<div class="controls">
-													<textarea name="comments" class="floatLabel" id="comments"></textarea>
-													<label for="comments">Comments</label>
+												<div class="col-1-3 col-1-3-sm">
+													<div class="controls">
+														<i class="fa fa-sort"></i> <select class="floatLabel">
+															<option value="blank"></option>
+															<option value="올뉴모닝">올뉴모닝</option>
+															<option value="레이">레이</option>
+															<option value="sm3">뉴sm3</option>
+															<option value="k3">k3</option>
+															<option value="아반떼">아반떼MD</option>
+															<option value="쏘울">쏘울</option>
+															<option value="K5">K5</option>
+															<option value="YF소나타">YF소나타</option>
+															<option value="LF소나타">LF소나타</option>
+															<option value="K7">K7</option>
+															<option value="그랜저HG">그랜저HG</option>
+														</select> <label for="fruit">&nbsp;&nbsp;차량선택</label>
+													</div>
 												</div>
-												<button type="submit" value="Submit" class="col-1-4">Submit</button>
+												<div class="col-1-3 col-1-3-sm">
+													<div class="controls">
+														<i class="fa fa-sort"></i> <select class="floatLabel">
+															<option value="blank"></option>
+															<option value="LPG">LPG</option>
+															<option value="휘발유">휘발유</option>
+															<option value="경유">경유</option>
+														</select> <label for="fruit">연료종류</label>
+													</div>
+												</div>
+												<div class="col-1-3 col-1-3-sm">
+													<div class="controls">
+														<i class="fa fa-sort"></i> <select class="floatLabel">
+															<option value="blank"></option>
+															<option value="단기대차">단기대차</option>
+															<option value="장기대차" >장기대차</option>
+															<option value="보험대차" >보험대차</option>
+														</select> <label for="fruit">대여종류</label>
+													</div>
+												</div><br><br><br>
+												<div class="grid">
+													<br>
+													<div class="controls">
+														<textarea name="comments" class="floatLabel" id="comments"></textarea>
+														<label for="comments">추가사항</label>
+													</div>
+													<button type="submit" value="Submit" class="col-1-4">Submit</button>
+												</div>
 											</div>
-										</div>
-										<!-- /.form-group -->
+											<!-- /.form-group -->
 								</form>
 							</div>
 							<%
@@ -562,14 +599,14 @@ td {
 											<%
 												for (int i = 0; i < list.size(); i++) {
 											%>
-											<tr>
+											<%-- <tr>
 												<td><%=list.get(i).getCar_num()%></td>
 												<td><%=list.get(i).getRequest_company_id()%></td>
 												<td><%=list.get(i).getFirst_day()%></td>
 												<td><%=list.get(i).getLast_day()%></td>
 												<td><%=list.get(i).getComments()%></td>
 												<td><input type="submit" value="수락"></td>
-											</tr>
+											</tr> --%>
 											<%
 												}
 											%>

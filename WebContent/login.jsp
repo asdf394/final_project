@@ -123,6 +123,11 @@ input[type="submit"].login:focus{outline: none;}
 </style>
 </head>
 <body>
+	<%
+		MemberDTO info = new MemberDTO();
+		session.setAttribute("info", info);
+	%>
+
 	<!-- ======= Header ======= -->
 	<header id="header">
 		<div class="container">

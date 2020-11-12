@@ -1,43 +1,42 @@
 package com.DTO;
 
 public class RentDTO {
-	private int car_num; // 번호판
+	private int req_num; // 번호판
 	private int request_company_id; // 년식
 	private int response_company_id; // 년식
 	private String first_day; // 년식
 	private String last_day; // 차 이미지
+	private String carName; // 차량이름
+	private String fuel; // 연료종류
 	private String comments; // 차 이미지
+	private String rent_type; //렌트종류
+	private int rent_status; // 렌트현황
 
 	public RentDTO() {
 
 	}
 
-	public RentDTO(int car_num, int request_company_id, int response_company_id, String first_day, String last_day,
-			String comments) {
+	public RentDTO(int req_num, int request_company_id, int response_company_id, String first_day, String last_day,
+			String carName, String fuel, String comments, String rent_type, int rent_status) {
 		super();
-		this.car_num = car_num;
+		this.req_num = req_num;
 		this.request_company_id = request_company_id;
 		this.response_company_id = response_company_id;
 		this.first_day = first_day;
 		this.last_day = last_day;
+		this.carName = carName;
+		this.fuel = fuel;
 		this.comments = comments;
+		this.rent_type = rent_type;
+		this.rent_status = rent_status;
 	}
 
-	public RentDTO(int car_num, int request_company_id, String first_day, String last_day, String comments) {
-		super();
-		this.car_num = car_num;
-		this.request_company_id = request_company_id;
-		this.first_day = first_day;
-		this.last_day = last_day;
-		this.comments = comments;
+	public int getReq_num() {
+		return req_num;
 	}
 
-	public int getCar_num() {
-		return car_num;
-	}
-
-	public void setCar_num(int car_num) {
-		this.car_num = car_num;
+	public void setReq_num(int req_num) {
+		this.req_num = req_num;
 	}
 
 	public int getRequest_company_id() {
@@ -72,6 +71,22 @@ public class RentDTO {
 		this.last_day = last_day;
 	}
 
+	public String getCarName() {
+		return carName;
+	}
+
+	public void setCarName(String carName) {
+		this.carName = carName;
+	}
+
+	public String getFuel() {
+		return fuel;
+	}
+
+	public void setFuel(String fuel) {
+		this.fuel = fuel;
+	}
+
 	public String getComments() {
 		return comments;
 	}
@@ -80,4 +95,21 @@ public class RentDTO {
 		this.comments = comments;
 	}
 
+	public String getRent_type() {
+		return rent_type;
+	}
+
+	public void setRent_type(String rent_type) {
+		this.rent_type = rent_type;
+	}
+
+	public int getRent_status() {
+		return rent_status;
+	}
+
+	public void setRent_status(int rent_status) {
+		this.rent_status = rent_status;
+	}
+
+	
 }

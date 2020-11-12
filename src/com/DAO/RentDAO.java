@@ -49,34 +49,20 @@ public class RentDAO {
 	// car_info DB에 자동차 추가
 	public int requestCar(RentDTO dto) {
 		getConn();
-		String sql = "insert into rent_car(car_num, request_company_id, response_company_id, first_day, first_day, comments)"
-				+ "values (?,?,null,?,?,?)";
+		String sql = "insert into rent_car(req_num, request_company_id, response_company_id, first_day, last_day, carName,fuel,comments,rent_type,rent_status)"
+				+ "values (req_num_seq.nextval,?,null,?,?,?,?,?,?,0)";
 		try {
 
 			pst = conn.prepareStatement(sql);
-			pst.setInt(1, dto.getCar_num());
-			pst.setInt(2, dto.getRequest_company_id());
-			pst.setString(3, dto.getFirst_day());
-			pst.setString(4, dto.getLast_day());
-			pst.setString(5, dto.getComments());
+			pst.setInt(1, dto.getRequest_company_id());
+			pst.setString(2, dto.getFirst_day());
+			pst.setString(3, dto.getLast_day());
+			pst.setString(4, dto.getCarName());
+			pst.setString(5, dto.getFuel());
+			pst.setString(6, dto.getComments());
+			pst.setString(7, dto.getRent_type());
 			cnt = pst.executeUpdate();
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return cnt;
-	}
-
-	public int responseCar(int Car_num, int Request_company_id) {
-		getConn();
-		String sql = "update rent_car set Request_company_id = ? where Car_num = ?";
-		try {
-			pst = conn.prepareStatement(sql);
-
-			pst.setInt(1, Request_company_id);
-			pst.setInt(2, Car_num);
-
-			cnt = pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -94,14 +80,18 @@ public class RentDAO {
 			rs = pst.executeQuery();
 			
 			while (rs.next()) {
-				int car_num = rs.getInt(1);
+				int req_num = rs.getInt(1);
 				int request_company_id = rs.getInt(2);
 				int response_company_id = rs.getInt(3);
 				String first_day = rs.getString(4);
 				String last_day = rs.getString(5);
-				String comments = rs.getString(6);
+				String carName = rs.getString(6);
+				String fuel = rs.getString(7);
+				String comments = rs.getString(8);
+				String rent_type = rs.getString(9);
+				int rent_status = rs.getInt(10);
 
-				RentDTO dto = new RentDTO(car_num, request_company_id, response_company_id, first_day, last_day, comments);
+				RentDTO dto = new RentDTO(req_num, request_company_id, response_company_id, first_day, last_day, carName, fuel, comments, rent_type, rent_status);
 				list.add(dto);
 			}
 		} catch (SQLException e) {

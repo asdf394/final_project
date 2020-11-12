@@ -1,7 +1,7 @@
 package com.DTO;
 
 public class MemberDTO {
-	private String company_id;
+	private int company_id;
 	private String email;
 	private String pw;
 	private String name;
@@ -11,6 +11,19 @@ public class MemberDTO {
 	private String location; // Â÷ ÁÖ¼Ò
 
 	public MemberDTO() {
+	}
+
+	public MemberDTO(int company_id, String email, String pw, String name, String companyName, String phone,
+			String companyImg, String location) {
+		super();
+		this.company_id = company_id;
+		this.email = email;
+		this.pw = pw;
+		this.name = name;
+		this.companyName = companyName;
+		this.phone = phone;
+		this.companyImg = companyImg;
+		this.location = location;
 	}
 
 	public MemberDTO(String email, String pw, String name) {
@@ -29,6 +42,7 @@ public class MemberDTO {
 		this.phone = phone;
 		this.location = location;
 	}
+
 	public MemberDTO(String email, String pw, String companyName, String phone, String location) {
 		super();
 		this.email = email;
@@ -45,11 +59,11 @@ public class MemberDTO {
 				+ "]";
 	}
 
-	public String getCompany_id() {
+	public int getCompany_id() {
 		return company_id;
 	}
 
-	public void setCompany_id(String company_id) {
+	public void setCompany_id(int company_id) {
 		this.company_id = company_id;
 	}
 
