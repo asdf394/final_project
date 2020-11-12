@@ -129,7 +129,7 @@ h2.heading {
 	text-align: left;
 	color: #506982;
 	border-bottom: 1px solid #506982;
-	padding-bottom: 3px;
+	padding-bottom: 10px;
 	margin-bottom: 20px;
 }
 
@@ -383,6 +383,35 @@ td {
 ::-webkit-scrollbar-thumb {
 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
+.btn_sc{
+color: white;
+background-color: #f8234a;
+padding: 5px;
+width: 200px;
+font-size: 18px;
+border-radius: 15px;
+border: solid 1px gray;
+}
+</style>
+<style type="text/css">
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 </style>
 </head>
 
@@ -426,18 +455,17 @@ td {
 	<!-- ======= Intro Section ======= -->
 	<section id="intro">
 		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
-			<h1 class="mb-4 pb-0">
-				영업중 부족한 차량 <br>구입 해야되나 고민말고<span>빌려쓰세요</span>
-			</h1>
+			<h1 style="font-family: 'GmarketSansBold'; margin-bottom: 22px;">영업중 부족한 차량</h1>
+			<h1 style="font-family: 'GmarketSansBold';">구입 해야되나 고민말고  <span>빌려쓰세요</span></h1>
 			<p class="mb-4 pb-0"></p>
 			<%
 				if (info == null) {
 			%>
-			<a href="login.jsp" class="about-btn scrollto">로그인 </a>
+			<a href="login.jsp" class="about-btn scrollto" style="font-family: 'GmarketSansMedium'; width: 150px;">로  그  인 </a>
 			<%
 				} else {
 			%>
-			<a href="#schedule" class="about-btn scrollto">차량 대여 신청</a>
+			<a href="#schedule" class="about-btn scrollto"style="font-family: 'GmarketSansMedium'; width: 200px;">차량 대여 신청</a>
 			<%
 				}
 			%>
@@ -455,20 +483,14 @@ td {
 		%>
 		<main id="main">
 			<!-- ======= Schedule Section ======= -->
-			<section id="schedule" class="section-with-bg">
+			<section id="schedule" class="section-with-bg" style="background-color: #fff;">
 				<div class="container" data-aos="fade-up">
-					<div class="section-header">
-						<h2>차량 대여 신청</h2>
-						<p>쉽고 빠르게 신청하세요</p>
+					<div class="section-header" style="margin-bottom: 0px;">
+						<h2 style="font-family: 'GmarketSansBold';">차량 대여 신청</h2>
+						<p style="font-family: 'GmarketSansMedium';">쉽고 빠르게 신청하세요</p>
 					</div>
-
 					<ul class="nav nav-tabs" role="tablist" data-aos="fade-up"
 						data-aos-delay="100">
-					<!-- 	<li class="nav-item" value="short"><a class="nav-link"
-							href="#day-1" role="tab" data-toggle="tab">단기렌트 신청</a></li>
-						<li class="nav-item" value="long"><a class="nav-link"
-							href="#day-1" role="tab" data-toggle="tab">장기렌트 신청</a></li> -->
-
 
 						<div class="tab-content row justify-content-center"
 							data-aos="fade-up" data-aos-delay="200">
@@ -479,7 +501,7 @@ td {
 								<form action="RequestService.do" method="post">
 									<!--  General -->
 									<div class="form-group">
-										<h2 class="heading">렌트 상세정보</h2>
+										<h2 class="heading" style="font-family: 'GmarketSansBold';">신상정보</h2>
 										<div class="controls">
 											<input type="text" id="name" class="floatLabel" name="request_company" value="<%=info.getCompanyName()%>">
 											<label for="name"><%=info.getCompanyName()%></label>
@@ -492,13 +514,13 @@ td {
 											<input type="tel" id="phone" class="floatLabel" name="phone">
 											<label for="phone"><%=info.getPhone()%></label>
 										</div>
-										<div class="controls">
+										<div class="controls" style="margin-bottom: 20px;">
 											<input type="text" id="location" class="floatLabel" name="location" value="<%=info.getLocation()%>"> 
 											<label for="location"><%=info.getLocation()%></label>
 										</div>
 										<!--  Details -->
 										<div class="form-group">
-											<h2 class="heading">Details</h2>
+											<h2 class="heading" style="font-family: 'GmarketSansBold';">차량정보</h2>
 											<div class="grid">
 												<div class="col-1-4 col-1-4-sm">
 													<div class="controls">
@@ -562,7 +584,9 @@ td {
 														<textarea name="comments" class="floatLabel" id="comment"></textarea>
 														<label for="comments">추가사항</label>
 													</div>
-													<button type="submit" class="col-1-4">Submit</button>
+													<div class="button" style=" margin: auto; width: 50%;">
+													<input type="submit" value="신청하기" class="btn_sc">
+													</div>
 												</div>
 											</div>
 								</form>
@@ -571,12 +595,11 @@ td {
 							RentDAO dao = new RentDAO();
 							ArrayList<RentDTO> list = dao.rentall();
 							%>
-
-
-							<h1>차량대여 요청목록</h1>
-							<form action="#" method="get" style="width: 730px; padding-right: 0px;padding-left: 0px;">
+							<div style="margin-bottom: 50px; color: white;">1</div>
+							<h1 style="font-family: 'GmarketSansBold';">차량대여 요청목록</h1>
+							<form action="#" method="get" style="width: 830px; padding-right: 0px;padding-left: 0px; padding-top: 20px;">
 								<div class="tbl-header">
-									<table cellpadding="0" cellspacing="0" border="0">
+									<table cellpadding="0" cellspacing="0" border="0" style="font-family: 'GmarketSansBold';">
 										<thead>
 											<tr>
 												<th>업체명</th>
@@ -586,15 +609,13 @@ td {
 												<th>차량종류</th>
 												<th>연료종류</th>
 												<th>렌트종류</th>
-												<th>특이사항</th>
 												<th>요청수락</th>
 											</tr>
 										</thead>
 									</table>
 								</div>
 								<div class="tbl-content">
-
-									<table cellpadding="0" cellspacing="0" border="0">
+									<table cellpadding="0" cellspacing="0" border="0" style="font-family: 'GmarketSansLight';">
 										<tbody>
 											<%
 												for (int i = 0; i < list.size(); i++) {
@@ -607,7 +628,6 @@ td {
 												<td><%=list.get(i).getCarName()%></td>
 												<td><%=list.get(i).getFuel()%></td>
 												<td><%=list.get(i).getRent_type()%></td>
-												<td><%=list.get(i).getComments()%></td>
 												<td><input type="submit" value="수락"></td>
 											</tr> 
 											<%

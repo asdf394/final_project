@@ -117,6 +117,26 @@ input[type="submit"].login:hover{background-color: #fff; border:1px solid #55b1d
 input[type="submit"].login:focus{outline: none;}
 
 </style>
+<style type="text/css">
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
 </head>
 <body>
 	<!-- ======= Header ======= -->
@@ -142,9 +162,9 @@ input[type="submit"].login:focus{outline: none;}
 
 	<!-- ======= Intro Section ======= -->
 	<section id="intro">
-		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
+		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100" style="font-family: 'GmarketSansMedium';">
 			<div class="login-box">
-				<h2>회원가입</h2>
+				<h2 style="font-family: 'GmarketSansBold';">회원가입</h2>
 				<form action="JoinService.do" method="post">
 					<div class="user-box">
 						<input type="text" name="email" required=""> <label>이메일</label>
@@ -164,7 +184,7 @@ input[type="submit"].login:focus{outline: none;}
 					<div class="user-box">
 						<input type="text" name="location" required=""> <label>업체주소</label>
 					</div>
-					<input type="submit" class="login pull-right" value="회원가입">
+					<input type="submit" class="login pull-right" value="회원가입" style="background-color: #f8234a">
 				</form>
 			</div>
 		</div>

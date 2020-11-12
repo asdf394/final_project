@@ -119,7 +119,26 @@ input[type="submit"].login{
 }
 input[type="submit"].login:hover{background-color: #fff; border:1px solid #55b1df; color:#55b1df; cursor:pointer;}
 input[type="submit"].login:focus{outline: none;}
-
+</style>
+<style type="text/css">
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 </style>
 </head>
 <body>
@@ -148,8 +167,8 @@ input[type="submit"].login:focus{outline: none;}
 	<!-- ======= Intro Section ======= -->
 	<section id="intro">
 		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
-			<div class="login-box">
-				<h2>로그인</h2>
+			<div class="login-box" style="font-family: 'GmarketSansMedium'">
+				<h2 style="font-family: 'GmarketSansBold'">로  그  인</h2>
 				<form action="LoginService.do" method="post">
 					<div class="user-box">
 						<input type="text" name="email" required=""> <label>이메일</label>
@@ -157,7 +176,7 @@ input[type="submit"].login:focus{outline: none;}
 					<div class="user-box">
 						<input type="password" name="pw" required=""> <label>비밀번호</label>
 					</div>
-					<input type="submit" class="login pull-right" value="로그인">
+					<input type="submit" class="login pull-right" value="로그인" style="background-color: #f8234a">
 				</form>
 			</div>
 		</div>

@@ -75,7 +75,7 @@ public class RentDAO {
 		
 		getConn();
 		
-		String sql = "select * from rent_car";
+		String sql = "select * from rent_car where response_company is null";
 		try {
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();

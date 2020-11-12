@@ -52,7 +52,7 @@ table {
 }
 
 .tbl-header {
-	background-color: rgba(900, 90, 100, 0.45);
+	background-color: ivory;
 }
 
 .tbl-content {
@@ -96,7 +96,7 @@ input[type="submit"].login {
 	border: none;
 	color: #fff;
 	font-weight: bold;
-	margin-right: 320px;
+	margin-right: 300px;
 }
 
 input[type="submit"].login:hover {
@@ -110,7 +110,26 @@ input[type="submit"].login:focus {
 	outline: none;
 }
 </style>
-
+<style type="text/css">
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
 </head>
 <body>
 	<!-- ======= Header ======= -->
@@ -138,22 +157,15 @@ input[type="submit"].login:focus {
 	<!-- End Header -->
 
 	<!-- ======= Intro Section ======= -->
-	<section id="intro">
-
-
-		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
-
-
-			<h2 style="margin-bottom: 100px; color: white">My Page</h2>
-
-
-			<a href="#schedule" class="about-btn scrollto"> 차량 대여현황 </a> <br>
-			<br> <a href="#predict" class="about-btn scrollto"> 차량 수요예측
-			</a> <br> <br> <a href="#editInfo" class="about-btn scrollto">
-				나의 정보수정 </a>
-
+	<section id="intro" style="height: 70vh;">
+		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100" style="height: ">
+			<h1 style="margin-bottom: 100px; color: white; font-family: 'GmarketSansBold';">My Page</h2>
+				<ul style="list-style:none; padding-left: 0px;">
+            		<li style="float:left;"><a href="#schedule" class="about-btn scrollto" style="margin-right: 50px;">차량 대여현황</a></li>
+            		<li style="float:left;"><a href="#predict" class="about-btn scrollto" style="margin-right: 50px;">차량 수요예측</a></li>
+            		<li style="float:left;"><a href="#editInfo" class="about-btn scrollto">나의 정보수정 </a></li>
+         		</ul>
 		</div>
-
 	</section>
 	<!-- End Intro Section -->
 
@@ -164,8 +176,8 @@ input[type="submit"].login:focus {
 		<section id="predict" style="margin-bottom: 100px;">
 			<div class="container" data-aos="fade-up" style="padding-top: 100px;">
 				<div class="section-header">
-					<h2>차량 수요예측</h2>
-					<p>다음달에는 차가 얼마나 필요할까?</p>
+					<h2 style="font-family: 'GmarketSansBold';">차량 수요예측</h2>
+					<p style="font-family: 'GmarketSansMedium';">다음달에는 차가 얼마나 필요할까?</p>
 				</div>
 
 				<div class="row">
@@ -221,8 +233,8 @@ input[type="submit"].login:focus {
 		<section id="schedule" class="section-with-bg">
 			<div class="container" data-aos="fade-up">
 				<div class="section-header">
-					<h2>차량 대여현황</h2>
-					<p>우리회사 렌터카 대여 현황을 확인해봅시다.</p>
+					<h2 style="font-family: 'GmarketSansBold';">차량 대여현황</h2>
+					<p style="font-family: 'GmarketSansMedium';">우리회사 렌터카 대여 현황을 확인해봅시다.</p>
 				</div>
 
 				<ul class="nav nav-tabs" role="tablist" data-aos="fade-up"
@@ -235,7 +247,7 @@ input[type="submit"].login:focus {
 				</ul>
 				<%
 								RentDAO dao = new RentDAO();
-							ArrayList<RentDTO> list = dao.viewall();
+							ArrayList<RentDTO> list = dao.rentall();
 							%>
 
 
@@ -247,13 +259,16 @@ input[type="submit"].login:focus {
 					<div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
 						<div class="tbl-header">
 							<table cellpadding="0" cellspacing="0" border="0">
-								<thead>
-											<tr>
-												<th>차번호</th>
-												<th>요청자</th>
+								<thead>	<tr>
+												<th>업체명</th>
+												<th>업체주소</th>
 												<th>렌트일시</th>
 												<th>반납일시</th>
-												<th>특이사항</th>				
+												<th>차량종류</th>
+												<th>연료종류</th>
+												<th>렌트종류</th>
+												<th>특이사항</th>
+												<th>요청수락</th>
 											</tr>
 								</thead>
 							</table>
@@ -264,13 +279,17 @@ input[type="submit"].login:focus {
 										<%
 												for (int i = 0; i < list.size(); i++) {
 											%>
-											<tr>
-												<td><%=list.get(i).getCar_num()%></td>
-												<td><%=list.get(i).getRequest_company_id()%></td>
+										 	<tr>
+												<td><%=list.get(i).getRequest_company()%></td>
+												<td><%=list.get(i).getLocation()%></td>
 												<td><%=list.get(i).getFirst_day()%></td>
 												<td><%=list.get(i).getLast_day()%></td>
+												<td><%=list.get(i).getCarName()%></td>
+												<td><%=list.get(i).getFuel()%></td>
+												<td><%=list.get(i).getRent_type()%></td>
 												<td><%=list.get(i).getComments()%></td>
-											</tr>
+												<td><input type="submit" value="수락"></td>
+											</tr> 
 											<%
 												}
 											%>
@@ -286,12 +305,16 @@ input[type="submit"].login:focus {
 						<div class="tbl-header">
 							<table cellpadding="0" cellspacing="0" border="0">
 								<thead>
-									<tr>
-												<th>차번호</th>
-												<th>요청자</th>
+										<tr>
+												<th>업체명</th>
+												<th>업체주소</th>
 												<th>렌트일시</th>
 												<th>반납일시</th>
-												<th>특이사항</th>				
+												<th>차량종류</th>
+												<th>연료종류</th>
+												<th>렌트종류</th>
+												<th>특이사항</th>
+												<th>요청수락</th>
 											</tr>
 								</thead>
 							</table>
@@ -302,13 +325,17 @@ input[type="submit"].login:focus {
 										<%
 												for (int i = 0; i < list.size(); i++) {
 											%>
-											<tr>
-												<td><%=list.get(i).getCar_num()%></td>
-												<td><%=list.get(i).getRequest_company_id()%></td>
+										 	<tr>
+												<td><%=list.get(i).getRequest_company()%></td>
+												<td><%=list.get(i).getLocation()%></td>
 												<td><%=list.get(i).getFirst_day()%></td>
 												<td><%=list.get(i).getLast_day()%></td>
+												<td><%=list.get(i).getCarName()%></td>
+												<td><%=list.get(i).getFuel()%></td>
+												<td><%=list.get(i).getRent_type()%></td>
 												<td><%=list.get(i).getComments()%></td>
-											</tr>
+												<td><input type="submit" value="수락"></td>
+											</tr> 
 											<%
 												}
 											%>
@@ -334,7 +361,7 @@ input[type="submit"].login:focus {
 			<div class="container" data-aos="fade-up" style="padding-top: 100px;">
 
 				<div class="section-header">
-					<h2>회원정보 수정</h2>
+					<h2 style="font-family: 'GmarketSansBold';">회원정보 수정</h2>
 				</div>
 
 				<div class="row justify-content-center" data-aos="fade-up"
@@ -370,7 +397,7 @@ input[type="submit"].login:focus {
 											name="companyName" /></td>
 									</tr>
 								</table>
-								<input type="submit" class="login pull-right" value="정보 변경하기">
+								<input type="submit" class="login pull-right" value="정보 변경하기" style="background-color: #f8234a; width: 200px">
 							</form>
 					</div>
 				</div>
