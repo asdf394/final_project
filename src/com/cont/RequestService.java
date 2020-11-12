@@ -14,15 +14,21 @@ public class RequestService implements Command{
 	@Override
 	public String execut(HttpServletRequest request, HttpServletResponse response) {
 
-		int car_num = Integer.parseInt(request.getParameter("car_num"));
-		int request_company_id = Integer.parseInt(request.getParameter("request_company_id"));
-		int response_company_id = Integer.parseInt(request.getParameter("response_company_id"));
+		String request_company = request.getParameter("request_company");
+		String location = request.getParameter("location");
 		String first_day = request.getParameter("first_day");
 		String last_day = request.getParameter("last_day");
+		String carName = request.getParameter("carName");
+		String fuel = request.getParameter("fuel");
 		String comments = request.getParameter("comments");
+		String rent_type = request.getParameter("rent_type");
 		
-		RentDTO dto = new RentDTO();
+		RentDTO dto = new RentDTO(request_company,location,first_day,last_day,carName,fuel,comments,rent_type);
 		RentDAO dao = new RentDAO();
+		
+		System.out.println(request_company);
+		
+		
 		int cnt = dao.requestCar(dto);
 		
 		if (cnt > 0) {

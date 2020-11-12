@@ -27,8 +27,6 @@ public class LoginService implements Command{
 		dto.setPw(pw);
 		
 		MemberDAO dao = new MemberDAO();
-		
-		
 		MemberDTO info =  dao.login(dto);
 		
 		if(info !=null) {

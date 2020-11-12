@@ -2,26 +2,41 @@ package com.DTO;
 
 public class RentDTO {
 	private int req_num; // 번호판
-	private int request_company_id; // 년식
-	private int response_company_id; // 년식
+	private String request_company; // 년식
+	private String response_company; // 년식
 	private String first_day; // 년식
 	private String last_day; // 차 이미지
 	private String carName; // 차량이름
 	private String fuel; // 연료종류
 	private String comments; // 차 이미지
-	private String rent_type; //렌트종류
+	private String rent_type; // 렌트종류
+	private String location; // 렌트종류
 	private int rent_status; // 렌트현황
 
 	public RentDTO() {
 
 	}
+	
+	public RentDTO(String request_company, String first_day, String last_day, String carName, String fuel,
+			String comments, String rent_type, String location) {
+		super();
+		this.request_company = request_company;
+		this.first_day = first_day;
+		this.last_day = last_day;
+		this.carName = carName;
+		this.fuel = fuel;
+		this.comments = comments;
+		this.rent_type = rent_type;
+		this.location = location;
+	}
 
-	public RentDTO(int req_num, int request_company_id, int response_company_id, String first_day, String last_day,
-			String carName, String fuel, String comments, String rent_type, int rent_status) {
+	public RentDTO(int req_num, String request_company, String response_company, String location, String first_day,
+			String last_day, String carName, String fuel, String comments, String rent_type, int rent_status) {
 		super();
 		this.req_num = req_num;
-		this.request_company_id = request_company_id;
-		this.response_company_id = response_company_id;
+		this.request_company = request_company;
+		this.response_company = response_company;
+		this.location = location;
 		this.first_day = first_day;
 		this.last_day = last_day;
 		this.carName = carName;
@@ -39,20 +54,20 @@ public class RentDTO {
 		this.req_num = req_num;
 	}
 
-	public int getRequest_company_id() {
-		return request_company_id;
+	public String getRequest_company() {
+		return request_company;
 	}
 
-	public void setRequest_company_id(int request_company_id) {
-		this.request_company_id = request_company_id;
+	public void setRequest_company(String request_company) {
+		this.request_company = request_company;
 	}
 
-	public int getResponse_company_id() {
-		return response_company_id;
+	public String getResponse_company() {
+		return response_company;
 	}
 
-	public void setResponse_company_id(int response_company_id) {
-		this.response_company_id = response_company_id;
+	public void setResponse_company(String response_company) {
+		this.response_company = response_company;
 	}
 
 	public String getFirst_day() {
@@ -111,5 +126,12 @@ public class RentDTO {
 		this.rent_status = rent_status;
 	}
 
-	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 }

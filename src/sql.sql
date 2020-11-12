@@ -3,6 +3,7 @@ drop table rent_member;
 drop table rent_member cascade constraint;
 drop table rent_car cascade constraint;
 drop sequence rent_id_seq;
+drop sequence req_num_seq;
 
 create table rent_member(
 company_id number, -- 시퀀스 사용
@@ -19,8 +20,9 @@ constraint rent_mem_co_name_uk unique(companyName)
 
 create table rent_car(
 req_num number, --시퀀스 사용
-request_company_id number,
-response_company_id number,
+request_company varchar2(50),
+response_company varchar2(50),
+location varchar2(50),
 first_day varchar2(50),
 last_day varchar2(50),
 carName varchar2(100),
@@ -30,16 +32,14 @@ rent_type varchar2(50),
 rent_status number, --0:요청중, 1:대여중
 
 constraint rent_car_req_num_pk primary key(req_num),
-constraint rent_car_rent_status_ck check(rent_status in(0, 1)),
-constraint rent_car_rent_type_ck check(rent_type in('단기','장기','보험'))
-
-)
+constraint rent_car_rent_status_ck check(rent_status in(0, 1)))
 
 
 insert into rent_member(id, pw, name, companyName, phone) values (rent_id_seq.nextval, 
 rent_seq.nextval, rent_seq.nextval, '실험', '0')
 
-insert into rent_car(car_num, request_company_id, response_company_id, first_day, last_day, comments) values (2,2,null,'2020-11-10','2020-11-11','경유');
+insert into rent_car(req_num, request_company, response_company, location, first_day, last_day, carName,fuel,comments,rent_type,rent_status)
+values (req_num_seq.nextval, '당구공', null, '니집', '2020-11-11', '2020-11-12', '황마', '기름', '단기', '단기대차', 0);
 
 select * from rent_car
 select * from rent_member
@@ -47,6 +47,9 @@ select * from CAR_INFO;
 select * from CAR_INFO where company_id = 1;
 -- 시퀀스 생성
 CREATE SEQUENCE rent_id_seq
+START WITH 1
+INCREMENT BY 1;
+CREATE SEQUENCE req_num_seq
 START WITH 1
 INCREMENT BY 1;
 

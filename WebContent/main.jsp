@@ -115,7 +115,7 @@ a {
 }
 
 header, form {
-	padding: 4em 10%;
+	padding: 4em 5%;
 }
 
 .form-group {
@@ -464,14 +464,11 @@ td {
 
 					<ul class="nav nav-tabs" role="tablist" data-aos="fade-up"
 						data-aos-delay="100">
-						<li class="nav-item" value="short"><a class="nav-link"
+					<!-- 	<li class="nav-item" value="short"><a class="nav-link"
 							href="#day-1" role="tab" data-toggle="tab">단기렌트 신청</a></li>
 						<li class="nav-item" value="long"><a class="nav-link"
-							href="#day-1" role="tab" data-toggle="tab">장기렌트 신청</a></li>
+							href="#day-1" role="tab" data-toggle="tab">장기렌트 신청</a></li> -->
 
-						<br>
-						<br>
-						<br>
 
 						<div class="tab-content row justify-content-center"
 							data-aos="fade-up" data-aos-delay="200">
@@ -479,24 +476,25 @@ td {
 							<!-- Schdule Day 1 -->
 							<div role="tabpanel" class="col-lg-9 tab-pane fade show active"
 								id="day-1">
-								<form action="">
+								<form action="RequestService.do" method="post">
 									<!--  General -->
 									<div class="form-group">
 										<h2 class="heading">렌트 상세정보</h2>
 										<div class="controls">
-											<%-- <input type="text" id="name" class="floatLabel" name="name" value="<%=info.getCompanyName()%>">
-											<label for="name"><%=info.getCompanyName()%></label> --%>
+											<input type="text" id="name" class="floatLabel" name="request_company" value="<%=info.getCompanyName()%>">
+											<label for="name"><%=info.getCompanyName()%></label>
 										</div>
 										<div class="controls">
-											<input type="text" id="email" class="floatLabel" name="email" value="<%=info.getCompanyName()%>">
-											<label for="email">이메일</label>
+											<input type="text" id="email" class="floatLabel" name="email">
+											<label for="email"><%=info.getEmail()%></label>
 										</div>
 										<div class="controls">
-											<input type="tel" id="phone" class="floatLabel" name="phone" value="<%=info.getCompanyName()%>">
-											<label for="phone">전화번호</label>
+											<input type="tel" id="phone" class="floatLabel" name="phone">
+											<label for="phone"><%=info.getPhone()%></label>
 										</div>
 										<div class="controls">
-											<input type="text" id="country" class="floatLabel" name="country"> <label for="country">상세주소</label>
+											<input type="text" id="location" class="floatLabel" name="location" value="<%=info.getLocation()%>"> 
+											<label for="location"><%=info.getLocation()%></label>
 										</div>
 										<!--  Details -->
 										<div class="form-group">
@@ -505,7 +503,7 @@ td {
 												<div class="col-1-4 col-1-4-sm">
 													<div class="controls">
 														<input type="date" id="arrive" class="floatLabel"
-															name="arrive" value="<?php echo date('Y-m-d'); ?>">
+															name="first_day" value="<?php echo date('Y-m-d'); ?>">
 														<label for="arrive" class="label-date"><i
 															class="fa fa-calendar"></i>&nbsp;&nbsp;대여</label>
 													</div>
@@ -513,7 +511,7 @@ td {
 												<div class="col-1-4 col-1-4-sm">
 													<div class="controls">
 														<input type="date" id="depart" class="floatLabel"
-															name="depart" value="<?php echo date('Y-m-d'); ?>" /> <label
+															name="last_day" value="<?php echo date('Y-m-d'); ?>" /> <label
 															for="depart" class="label-date"><i
 															class="fa fa-calendar"></i>&nbsp;&nbsp;반납</label>
 													</div>
@@ -522,7 +520,7 @@ td {
 											<div class="grid">
 												<div class="col-1-3 col-1-3-sm">
 													<div class="controls">
-														<i class="fa fa-sort"></i> <select class="floatLabel">
+														<i class="fa fa-sort"></i> <select class="floatLabel" name="carName">
 															<option value="blank"></option>
 															<option value="올뉴모닝">올뉴모닝</option>
 															<option value="레이">레이</option>
@@ -540,7 +538,7 @@ td {
 												</div>
 												<div class="col-1-3 col-1-3-sm">
 													<div class="controls">
-														<i class="fa fa-sort"></i> <select class="floatLabel">
+														<i class="fa fa-sort"></i> <select class="floatLabel" name="fuel">
 															<option value="blank"></option>
 															<option value="LPG">LPG</option>
 															<option value="휘발유">휘발유</option>
@@ -550,7 +548,7 @@ td {
 												</div>
 												<div class="col-1-3 col-1-3-sm">
 													<div class="controls">
-														<i class="fa fa-sort"></i> <select class="floatLabel">
+														<i class="fa fa-sort"></i> <select class="floatLabel" name="rent_type">
 															<option value="blank"></option>
 															<option value="단기대차">단기대차</option>
 															<option value="장기대차" >장기대차</option>
@@ -561,31 +559,33 @@ td {
 												<div class="grid">
 													<br>
 													<div class="controls">
-														<textarea name="comments" class="floatLabel" id="comments"></textarea>
+														<textarea name="comments" class="floatLabel" id="comment"></textarea>
 														<label for="comments">추가사항</label>
 													</div>
-													<button type="submit" value="Submit" class="col-1-4">Submit</button>
+													<button type="submit" class="col-1-4">Submit</button>
 												</div>
 											</div>
-											<!-- /.form-group -->
 								</form>
 							</div>
 							<%
-								RentDAO dao = new RentDAO();
-							ArrayList<RentDTO> list = dao.viewall();
+							RentDAO dao = new RentDAO();
+							ArrayList<RentDTO> list = dao.rentall();
 							%>
 
 
-							<h1>Fixed Table header</h1>
-							<form action="#" method="get">
+							<h1>차량대여 요청목록</h1>
+							<form action="#" method="get" style="width: 730px; padding-right: 0px;padding-left: 0px;">
 								<div class="tbl-header">
 									<table cellpadding="0" cellspacing="0" border="0">
 										<thead>
 											<tr>
-												<th>차번호</th>
-												<th>요청자</th>
+												<th>업체명</th>
+												<th>업체주소</th>
 												<th>렌트일시</th>
 												<th>반납일시</th>
+												<th>차량종류</th>
+												<th>연료종류</th>
+												<th>렌트종류</th>
 												<th>특이사항</th>
 												<th>요청수락</th>
 											</tr>
@@ -599,14 +599,17 @@ td {
 											<%
 												for (int i = 0; i < list.size(); i++) {
 											%>
-											<%-- <tr>
-												<td><%=list.get(i).getCar_num()%></td>
-												<td><%=list.get(i).getRequest_company_id()%></td>
+										 	<tr>
+												<td><%=list.get(i).getRequest_company()%></td>
+												<td><%=list.get(i).getLocation()%></td>
 												<td><%=list.get(i).getFirst_day()%></td>
 												<td><%=list.get(i).getLast_day()%></td>
+												<td><%=list.get(i).getCarName()%></td>
+												<td><%=list.get(i).getFuel()%></td>
+												<td><%=list.get(i).getRent_type()%></td>
 												<td><%=list.get(i).getComments()%></td>
 												<td><input type="submit" value="수락"></td>
-											</tr> --%>
+											</tr> 
 											<%
 												}
 											%>

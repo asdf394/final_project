@@ -90,11 +90,17 @@ public class MemberDAO {
 			rs = pst.executeQuery();
 
 			if (rs.next()) {
-				String email = rs.getString(1);
-				String pw = rs.getString(2);
-				rdto = new MemberDTO();
-				rdto.setEmail(email);
-				rdto.setPw(pw);
+				int company_id = rs.getInt(1);
+				String email = rs.getString(2);
+				String pw = rs.getString(3);
+				String name = rs.getString(4);
+				String companyName = rs.getString(5);
+				String companyImg = rs.getString(6);
+				String location = rs.getString(7);
+				String phone = rs.getString(8);
+				
+				rdto = new MemberDTO(company_id, email, pw, name, companyName, phone, companyImg, location);
+	
 				System.out.println("db에 값이 존재"+email);
 			}
 
