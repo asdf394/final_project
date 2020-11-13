@@ -10,8 +10,8 @@ public class BoardDTO {
 	
 	@Override
 	public String toString() {
-		return "BoardDTO [board_num=" + board_num + ", company_id=" + company_id + ", title=" + title + ", file_name="
-				+ file_name + ", content=" + content + ", board_day=" + board_day + "]";
+		return board_num + "," + company_id + "," + title + ","
+				+ file_name + "," + content + "," + board_day;
 	}
 
 	public BoardDTO() {	}

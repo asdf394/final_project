@@ -38,6 +38,17 @@ constraint car_rent_mem_co_id_fk2 foreign key(response_company) references rent_
 
 )
 
+create table rent_board(
+   board_num number, --rent_board_num 시퀀스 사용   
+   company_id number, --로그인 한 사용자
+   title varchar2(200),
+   file_name varchar2(200), 
+   content varchar2(1000),
+   board_day date,
+   
+   constraint rent_board_num_pk primary key(board_num),
+   constraint rent_board_mem_com_id_fk1 foreign key(company_id) references rent_member(company_id)  
+   );
 
 insert into rent_member(id, pw, name, companyName, phone) values (rent_id_seq.nextval, 
 rent_seq.nextval, rent_seq.nextval, '실험', '0')
@@ -56,6 +67,9 @@ INCREMENT BY 1;
 CREATE SEQUENCE req_num_seq
 START WITH 1
 INCREMENT BY 1;
+
+create sequence rent_board_num start with 1 increment by 1;
+
 
 
 select * from car_info where  rent=0 and company_id = (select company_id from rent_member where email like '2')

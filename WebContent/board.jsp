@@ -1,9 +1,12 @@
+<%@page import="com.DAO.MemberDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.DAO.BoardDAO"%>
 <%@page import="com.DTO.BoardDTO"%>
 <%@page import="com.DTO.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,6 +54,18 @@
 	/* visibility: hidden; */
 	display : none;
 	}
+	#writer_close{
+		visibility: hidden;
+	}
+ 	#select_one_board{
+ 		width: 45%;
+		 display : none; 
+		 margin-left: 100px;
+	}
+	#speakers-details .container{
+		min-height: 600px;
+	}
+
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   
@@ -62,6 +77,7 @@
 	/* viewAll 메소드는 시간을 기준으로 내림차순하여 게시글을 전부를
 	BoardDTO에 담아 ArrayList에 추가하여 ArrayList을 돌려준다
 	*/
+		MemberDAO memDAO = new MemberDAO();
 		ArrayList<BoardDTO> list = dao.viewAll();
 		MemberDTO info = (MemberDTO) session.getAttribute("info");
 	%>
@@ -103,10 +119,9 @@
       <div class="container">
         <div class="section-header">
           <h2>게시판</h2>
-          <p>Praesentium ut qui possimus sapiente nulla.</p>
         </div>
 
-        <div class="row" style="text-align: center;">
+        <div class="row" style="text-align: center;" id="center">
 			<div id="board" >
 				<table id = "list" border="1px">
 				<tr>
@@ -121,62 +136,100 @@
 						<td>삭제</td>
 						<%}} %>
 					</tr>
-				<% for(int i=0; i<list.size();i++){%>
+				<% for(int i=0; i<list.size();i++){ 
+					String companyName = memDAO.companyName(list.get(i).getCompany_id());
+					//System.out.print("회사이름"+companyName);
+				%>
 					<tr>
 						<td><%=i+1 %></td>
-						<td><a href="#" onclick="text_info(<%=list.get(i).getBoard_num() %>); return false;"><%= list.get(i).getTitle() %></a></td>
-						<%-- <td><a href="viewBoard.jsp?board_num=<%=list.get(i).getBoard_num() %> "> <%= list.get(i).getTitle() %></a></td> --%>
-						<td><%=list.get(i).getCompany_id() %></td>
+						<td><a href="#" onclick="text_info('<%=list.get(i) %>', '<%=companyName %>')"> <%= list.get(i).getTitle() %></a></td>
+						<td><%=companyName %></td>
 						<td><%= list.get(i).getBoard_day() %></td>
 						<% if(info != null) {
-							if(info.getEmail().equals("admin")){ %>
+							
+							if(info.getCompany_id() == list.get(i).getCompany_id()){ %>
 						
-						<td><a href="RemoveBoard.do?board_num=<%=list.get(i).getBoard_num() %>">삭제</a></td>
+						<td style="width: 10%;"><a style="width: 100%;" href="RemoveBoard.do?board_num=<%=list.get(i).getBoard_num() %>">삭제</a></td>
 						<!-- FrontController로 이동해서 RemoveBoard 기능을 수행하시오
 						하나의 게시글을 삭제하고 나면 다시 boardMain.jsp로 이동하시오 -->
+						
 						<%} }%>
 					</tr>
 					<% } %>
+				
 				</table>
 				<!-- <a href="writerBoard.jsp"><button id="writer">글쓰기</button ></a> -->
 				<button id="writer" onclick="board_write()">글쓰기</button>
+				<button id="writer_close" onclick="board_hide()">닫기</button>
 			</div>
 			<div id = "write_board">
 			<!-- multipart/form-data : 많은 파일을 업로드할때 형식 -->
 				<form action="UploadBoardService.do" method="post" enctype="multipart/form-data"> 
-				<table id="list">
+				<table id="list" border="1px">
 					<tr>
 						<td>작성자</td>
-						<td><%=info.getCompany_id() %> </td>
+						<td><%= memDAO.companyName(info.getCompany_id()) %> </td>
 					</tr>
 					<tr>
 						<td>제목</td>
-						<td><input type="text" name="title"> </td>
+						<td><input type="text" name="title" style="width: 95%;"> </td>
 					</tr>
 					<tr>
 						<td colspan="2">내용</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea name="content" rows="10" style="resize: none;"></textarea>			
+							<textarea name="content" rows="10" style="resize: none; width: 100%;"></textarea>			
 						</td>
 					</tr>
 					<tr>
-						<td>
-						</td>
-						<td>
+						<td colspan="2">
 							<input name = "file_name" type="file" style="float: right;">
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="reset" onclick="write_board_hide()" id="cancel" value="취소">
+							<input type="reset" onclick="board_hide()" id="cancel" value="취소">
 							<input type="submit" value="작성하기">
 						</td>
 					</tr>
 				</table>
 				</form>
 			</div>
+			
+			<div id = "select_one_board">
+				<table id="list" border="1px">
+					<tr>
+						<td>작성자</td>
+						<td id = "select_one_id"></td>
+					</tr>
+					<tr>
+						<td>작성시각</td>
+						<td id = "select_one_day"></td>
+					</tr>
+					<tr>
+						<td>제목</td>
+						<td id = "select_one_title"></td>
+					</tr>
+					<tr>
+						<td colspan="2">내용</td>
+					</tr>
+					<tr>
+						<td colspan="2" id="select_one_content" style="height: 150px;">			
+						<!-- 이미지 처리  -->				
+							<!-- <img src="#"> -->
+							<br>
+							
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><button onclick="board_hide()" id="one_board_close">닫기</button></td>
+					</tr>
+				</table>
+			</div>
+			
+		
+			
         </div>
       </div>
 
@@ -258,26 +311,7 @@
   </footer><!-- End  Footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-  <script type="text/javascript">
-  function board_write() {
-	  var write_board = document.getElementById("write_board");
-	  //write_board.style.visibility = 'visible';
-	  write_board.style.display = 'inline';
-/* 	          // Hide
-	  element.style.display = 'block';          // Show
-	  element.style.display = 'inline';         // Show
-	  element.style.display = 'inline-block';   // Show */
-}
-  function write_board_hide(){
-	  var write_board = document.getElementById("write_board");
-	 // write_board.style.visibility = 'hidden';	
-	  write_board.style.display = 'none';   
-  }
-  
-  function text_info(num){
-	  //넘버 받아와서 
-  }
-  </script>
+
 
   <!-- Vendor JS Files -->
 
@@ -293,6 +327,92 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script type="text/javascript">
+  function board_write() {
+	  var write_board = document.getElementById("write_board");
+	  var close = document.getElementById("writer_close");
+	  var select_one_board = document.getElementById("select_one_board");
+		if(select_one_board.style.display == 'inline'){
+			$("#select_one_title").html('');
+			$("#select_one_id").html('');
+			$("#select_one_content").html('');
+			$("#select_one_day").html('');
+			select_one_board.style.display = 'none';
+		}
+	  //write_board.style.visibility = 'visible';
+	  write_board.style.display = 'inline';
+	  close.style.visibility = 'visible';
+/* 	          // Hide
+	  element.style.display = 'block';          // Show
+	  element.style.display = 'inline';         // Show
+	  element.style.display = 'inline-block';   // Show */
+}
+  //글쓰는 창, 클릭시 보여주는 테이블 닫기 함수
+  function board_hide(){
+	  var write_board = document.getElementById("write_board");
+	  var close = document.getElementById("writer_close");
+	  var select_one_board = document.getElementById("select_one_board");
+	  var one_board_close = document.getElementById("one_board_close");	  
+	  
+		$("#select_one_title").html('');
+		$("#select_one_id").html('');
+		$("#select_one_content").html('');
+		$("#select_one_day").html('');
+	 // write_board.style.visibility = 'hidden';	
+	  write_board.style.display = 'none';  
+	  close.style.visibility = 'hidden';
+
+	select_one_board.style.display = 'none';  
+	one_board_close.style.display = 'none';
+	  
+  }
+  
+   function text_info(content, companyName){
+	var close = document.getElementById("writer_close");
+	var select_one_board = document.getElementById("select_one_board");
+	//var getTag = $("#select_one_title").html();
+	if(select_one_board.style.display == 'inline'){
+		$("#select_one_title").html('');
+		$("#select_one_id").html('');
+		$("#select_one_content").html('');
+		$("#select_one_day").html('');
+	}
+	var write_board = document.getElementById("write_board");
+	if(write_board.style.display == 'inline'){
+		write_board.style.display = 'none';
+	}
+	
+	/* if문 써서 해당 태그 값이 inline이면 none으로 변경 */
+	  /*   select_one_board.style.display = 'none';  
+		one_board_close.style.display = 'none'; */
+		 close.style.visibility = 'visible';
+	   select_one_board.style.display = 'inline';
+	   one_board_close.style.display = 'inline';
+	var list = content.split(",");
+	var company_id = list[1];
+	var title = list[2];
+	var file_name = list[3];
+	if (file_name) {
+		file_name = ' ';
+	} 
+	var content = list[4];
+	var board_day = list[5];
+	
+	//console.log(companyName);
+	
+	// tag 를 삽입한다.
+	$("#select_one_title").append(title);
+	$("#select_one_id").append(companyName);
+	$("#select_one_content").append(content);
+	$("#select_one_day").append(board_day);
+	//$("#center").html(getTag);
+	 	
+	
+	/*   var selectOne = document.getElementById("board_select_one");
+	  selectOne.style.display = 'inline';
+	  */
+  }  
+  </script>
 </body>
 
 </html>

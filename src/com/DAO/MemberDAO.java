@@ -46,6 +46,26 @@ public class MemberDAO {
 		}
 	}
 	
+	public String companyName(int company_id) {
+		String cName = null;		
+		try {
+			getConn();
+			String sql = "select companyname from rent_member where company_id = ?";
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, company_id);
+			rs = pst.executeQuery();
+			if(rs.next()) {
+				cName = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		return cName;
+	}
 	public int Join(MemberDTO dto) {
 
 		try {
