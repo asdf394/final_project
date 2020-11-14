@@ -64,13 +64,42 @@
 		 margin-left: 120px;
 	}
 	#speakers-details .container{
-		min-height: 600px;
+		min-height: 720px;
 		margin-left: 7%;
 		margin-right: 3%;
 	}
 	div#center{
 		width : 100%;
 	}
+	
+	.fill:hover, .fill:focus {
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+.fill {
+  --color: #f82249;
+  --hover: #f82249;
+}
+
+button, input[type = submit] {
+  color: var(--color);
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+button:hover, button:focus, input[type = submit]:hover, input[type = submit]:focus {
+  border-color: var(--hover);
+  color: white;
+}
+
+button, input[type = submit] {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  width: 120px;
+  height: 40px;
+}
 
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -159,13 +188,13 @@
 					<% } %>
 				
 				</table>
-				<button id="writer" onclick="board_write()">글쓰기</button>
-				<button id="writer_close" onclick="board_hide()">닫기</button>
+				<button class="fill" id="writer" onclick="board_write()">글쓰기</button>
+				<button class="fill" id="writer_close" onclick="board_hide()">닫기</button>
 			</div>
 			<div id = "write_board">
 			<!-- multipart/form-data : 많은 파일을 업로드할때 형식 -->
 				<form action="UploadBoardService.do" method="post" enctype="multipart/form-data"> 
-				<table id="list" border="1px">
+				<table id="list" class="table table-hover table-mc-light-blue">
 					<tr>
 						<td>작성자</td>
 						<td><%=memDAO.companyName(info.getCompany_id()) %> </td>
@@ -189,8 +218,8 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="reset" onclick="board_hide()" id="cancel" value="취소">
-							<input type="submit" value="작성하기">
+							<button class="fill" type="reset" onclick="board_hide()" id="cancel">취소</button>
+							<input class="fill" type="submit" value="작성하기">
 						</td>
 					</tr>
 				</table>
@@ -198,7 +227,7 @@
 			</div>
 			
 			<div id = "select_one_board">
-				<table id="list" border="1px">
+				<table id="list" class="table table-hover table-mc-light-blue">
 					<tr>
 						<td>작성자</td>
 						<td id = "select_one_id"></td>
@@ -223,7 +252,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><button onclick="board_hide()" id="one_board_close">닫기</button></td>
+						<td colspan="2"><button class="fill" onclick="board_hide()" id="one_board_close">닫기</button></td>
 					</tr>
 				</table>
 			</div>
