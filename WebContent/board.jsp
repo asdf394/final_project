@@ -100,10 +100,31 @@ button, input[type = submit] {
   width: 120px;
   height: 40px;
 }
-
+.logoc{
+	width: 140px;
+}
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
+  <style type="text/css">
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
 </head>
 
 <body>
@@ -152,13 +173,13 @@ button, input[type = submit] {
     <!-- ======= Speaker Details Sectionn ======= -->
     <section id="speakers-details">
       <div class="container" style="max-width: 1500px;">
-        <div class="section-header">
-          <h2>게시판</h2>
+        <div class="section-header" >
+          <h2 style="font-family: 'GmarketSansBold';">문의 게시판</h2>
         </div>
 
         <div class="row" style="text-align: center;" id="center">
 			<div id="board" class="table-responsive-vertical shadow-z-1" >
-				<table id = "list" class="table table-hover table-mc-light-blue">
+				<table id = "list" class="table table-hover table-mc-light-blue" style="font-family: 'GmarketSansMedium';">
 				<tr>
 						<th>번호</th>
 						<th>제목</th>
@@ -188,13 +209,13 @@ button, input[type = submit] {
 					<% } %>
 				
 				</table>
-				<button class="fill" id="writer" onclick="board_write()">글쓰기</button>
-				<button class="fill" id="writer_close" onclick="board_hide()">닫기</button>
+				<button class="fill" id="writer" onclick="board_write()"style="font-family: 'GmarketSansMedium';">글쓰기</button>
+				<button class="fill" id="writer_close" onclick="board_hide()" style="font-family: 'GmarketSansMedium';">닫기</button>
 			</div>
 			<div id = "write_board">
 			<!-- multipart/form-data : 많은 파일을 업로드할때 형식 -->
 				<form action="UploadBoardService.do" method="post" enctype="multipart/form-data"> 
-				<table id="list" class="table table-hover table-mc-light-blue">
+				<table id="list" class="table table-hover table-mc-light-blue" style="font-family: 'GmarketSansMedium';">
 					<tr>
 						<td>작성자</td>
 						<td><%=memDAO.companyName(info.getCompany_id()) %> </td>
@@ -218,8 +239,8 @@ button, input[type = submit] {
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button class="fill" type="reset" onclick="board_hide()" id="cancel">취소</button>
-							<input class="fill" type="submit" value="작성하기">
+							<button class="fill" type="reset" onclick="board_hide()" id="cancel" style="font-family: 'GmarketSansMedium';">취소</button>
+							<input class="fill" type="submit" value="작성하기" style="font-family: 'GmarketSansMedium';">
 						</td>
 					</tr>
 				</table>
@@ -227,21 +248,21 @@ button, input[type = submit] {
 			</div>
 			
 			<div id = "select_one_board">
-				<table id="list" class="table table-hover table-mc-light-blue">
+				<table id="list" class="table table-hover table-mc-light-blue" style="font-family: 'GmarketSansMedium';">
 					<tr>
-						<td>작성자</td>
-						<td id = "select_one_id"></td>
+						<td style="font-family: 'GmarketSansLight';">작성자</td>
+						<td id = "select_one_id" style="font-family: 'GmarketSansLight';"></td>
 					</tr>
 					<tr>
-						<td>작성시각</td>
-						<td id = "select_one_day"></td>
+						<td style="font-family: 'GmarketSansLight';">작성시각</td>
+						<td id = "select_one_day" style="font-family: 'GmarketSansLight';"></td>
 					</tr>
 					<tr>
-						<td>제목</td>
-						<td id = "select_one_title"></td>
+						<td style="font-family: 'GmarketSansLight';">제목</td>
+						<td id = "select_one_title" style="font-family: 'GmarketSansLight';"></td>
 					</tr>
 					<tr>
-						<td colspan="2">내용</td>
+						<td colspan="2" style="font-family: 'GmarketSansLight';">내용</td>
 					</tr>
 					<tr>
 						<td colspan="2" id="select_one_content" style="height: 150px;">			
@@ -252,7 +273,7 @@ button, input[type = submit] {
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><button class="fill" onclick="board_hide()" id="one_board_close">닫기</button></td>
+						<td colspan="2"><button class="fill" onclick="board_hide()" id="one_board_close" >닫기</button></td>
 					</tr>
 				</table>
 			</div>

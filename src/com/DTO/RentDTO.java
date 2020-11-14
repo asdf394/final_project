@@ -16,9 +16,17 @@ public class RentDTO {
 	public RentDTO() {
 
 	}
+	public RentDTO(String response_company, int req_num) {
+		super();
+		this.response_company = response_company;
+		this.req_num = req_num;
+	}
 	
-	public RentDTO(String request_company,String location, String first_day, String last_day, String carName, String fuel,
-			String rent_type,String comments) {
+	
+	
+	
+	public RentDTO(String request_company, String location, String first_day, String last_day, String carName,
+			String fuel, String rent_type, String comments) {
 		super();
 		this.request_company = request_company;
 		this.first_day = first_day;

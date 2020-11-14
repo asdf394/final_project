@@ -119,6 +119,10 @@ input[type="submit"].login{
 }
 input[type="submit"].login:hover{background-color: #fff; border:1px solid #55b1df; color:#55b1df; cursor:pointer;}
 input[type="submit"].login:focus{outline: none;}
+
+.logoc{
+	width: 140px;
+}
 </style>
 <style type="text/css">
 @font-face {
@@ -149,7 +153,7 @@ input[type="submit"].login:focus{outline: none;}
 
 			<div id="logo" class="pull-left">
 				<a href="main.jsp" class="scrollto"><img
-					src="assets/img/carlogo.png" alt="" title=""></a>
+					src="assets/img/carlogo.png" class="logoc" alt="" title=""></a>
 			</div>
 
 			<nav id="nav-menu-container">
@@ -192,7 +196,7 @@ input[type="submit"].login:focus{outline: none;}
 				<div class="row">
 
 					<div class="col-lg-3 col-md-6 footer-info">
-						<img src="assets/img/carlogo.png" alt="니카내카">
+						<img src="assets/img/carlogo.png" class="logoc" alt="니카내카">
 						<p>ㄲ ㅓ 억</p>
 					</div>
 

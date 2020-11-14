@@ -16,6 +16,7 @@ import com.cont.LoginService;
 import com.cont.LogoutService;
 import com.cont.RemoveBoard;
 import com.cont.RequestService;
+import com.cont.ResponseService;
 import com.cont.UpdateService;
 import com.cont.UploadBoardService;
 import com.DTO.MemberDTO;
@@ -37,6 +38,7 @@ public class FrontController extends HttpServlet {
 		map.put("RequestService.do",new RequestService());
 		map.put("UploadBoardService.do", new UploadBoardService());
 		map.put("RemoveBoard.do", new RemoveBoard());
+		map.put("ResponseService.do", new ResponseService());
 	}
 
 

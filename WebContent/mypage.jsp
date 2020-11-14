@@ -109,6 +109,9 @@ input[type="submit"].login:hover {
 input[type="submit"].login:focus {
 	outline: none;
 }
+.logoc{
+	width: 140px;
+}
 </style>
 <style type="text/css">
 @font-face {
@@ -138,17 +141,17 @@ input[type="submit"].login:focus {
 
 			<div id="logo" class="pull-left">
 				<a href="main.jsp" class="scrollto">
-				<img src="assets/img/carlogo.png" alt="" title=""></a>
+				<img src="assets/img/carlogo.png" class="logoc" alt="" title=""></a>
 			</div>
 
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
 
+					<li><a href="main.jsp">메인으로</a></li>
 					<li><a href="#schedule">대여현황</a></li>
 					<li><a href="#predict">수요예측</a></li>
 					<li><a href="#editInfo">정보수정</a></li>
-
-					<li class="buy-tickets"><a href="#buy-tickets">로그아웃</a></li>
+					<li><a href="LogoutService.do">로그아웃</a></li>
 				</ul>
 			</nav>
 			<!-- #nav-menu-container -->
@@ -418,7 +421,7 @@ input[type="submit"].login:focus {
 				<div class="row">
 
 					<div class="col-lg-3 col-md-6 footer-info">
-						<img src="assets/img/carlogo.png" alt="니카내카">
+						<img src="assets/img/carlogo.png" class="logoc" alt="니카내카">
 						<p>ㄲ ㅓ 억</p>
 					</div>
 

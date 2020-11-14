@@ -70,6 +70,25 @@ public class RentDAO {
 		return cnt;
 	}
 
+	// car_info DB에 자동차 추가
+		public int responseCar(RentDTO dto) {
+			getConn();
+			String sql = "update rent_car set response_company = ?, rent_status = 1 where req_num = ?";
+		
+			try {
+
+				pst = conn.prepareStatement(sql);
+				pst.setString(1, dto.getResponse_company());
+				pst.setInt(2, dto.getReq_num());
+				cnt = pst.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return cnt;
+		}
+	
+	
 	public ArrayList<RentDTO> rentall() {
 		ArrayList<RentDTO> list = new ArrayList<RentDTO>();
 		

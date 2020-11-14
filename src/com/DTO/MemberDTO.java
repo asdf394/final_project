@@ -12,6 +12,10 @@ public class MemberDTO {
 
 	public MemberDTO() {
 	}
+	public MemberDTO(String companyName) {
+		super();
+		this.companyName = companyName;
+	}
 	
 	public MemberDTO(int company_id, String email, String pw, String name, String companyName, String phone,
 			String companyImg, String location) {

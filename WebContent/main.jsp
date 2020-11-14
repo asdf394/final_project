@@ -392,6 +392,10 @@ font-size: 18px;
 border-radius: 15px;
 border: solid 1px gray;
 }
+
+.logoc{
+	width: 140px;
+}
 </style>
 <style type="text/css">
 @font-face {
@@ -425,7 +429,7 @@ border: solid 1px gray;
 
 			<div id="logo" class="pull-left">
 				<a href="main.jsp" class="scrollto"><img
-					src="assets/img/carlogo.png" alt="" title=""></a>
+					src="assets/img/carlogo.png" class="logoc" alt="" title=""></a>
 			</div>
 
 			<nav id="nav-menu-container">
@@ -439,7 +443,7 @@ border: solid 1px gray;
 						} else {
 					%>
 					<li><a href="#schedule">차량대여</a></li>
-					<li><a href="#">문의하기</a></li>
+					<li><a href="board.jsp">문의하기</a></li>
 					<li><a href="mypage.jsp">내정보</a></li>
 					<li><a href="LogoutService.do">로그아웃</a></li>
 					<%
@@ -597,7 +601,7 @@ border: solid 1px gray;
 							%>
 							<div style="margin-bottom: 50px; color: white;">1</div>
 							<h1 style="font-family: 'GmarketSansBold';">차량대여 요청목록</h1>
-							<form action="#" method="get" style="width: 830px; padding-right: 0px;padding-left: 0px; padding-top: 20px;">
+							<form action="ResponseService.do" method="post" style="width: 830px; padding-right: 0px;padding-left: 0px; padding-top: 20px;">
 								<div class="tbl-header">
 									<table cellpadding="0" cellspacing="0" border="0" style="font-family: 'GmarketSansBold';">
 										<thead>
@@ -610,6 +614,7 @@ border: solid 1px gray;
 												<th>연료종류</th>
 												<th>렌트종류</th>
 												<th>요청수락</th>
+												<input type="hidden" name="response_company" value="<%=info.getCompanyName()%>">
 											</tr>
 										</thead>
 									</table>
@@ -629,6 +634,7 @@ border: solid 1px gray;
 												<td><%=list.get(i).getFuel()%></td>
 												<td><%=list.get(i).getRent_type()%></td>
 												<td><input type="submit" value="수락"></td>
+												<input type="hidden" name="req_num" value="<%=list.get(i).getReq_num()%>" >
 											</tr> 
 											<%
 												}
@@ -657,7 +663,7 @@ border: solid 1px gray;
 					<div class="row">
 
 						<div class="col-lg-3 col-md-6 footer-info">
-							<img src="assets/img/carlogo.png" alt="니카내카">
+							<img src="assets/img/carlogo.png" class="logoc" alt="니카내카">
 							<p>In alias aperiam. Placeat tempore facere. Officiis
 								voluptate ipsam vel eveniet est dolor et totam porro.
 								Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut
