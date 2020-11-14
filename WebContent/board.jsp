@@ -43,14 +43,15 @@
   
   <style type="text/css">
   div#board{
-  width: 35%;
+  width: 45%;
+	margin-right: 10px;
   }
   table#list {
     width: 100%;
 }
 	div#write_board{
 	width: 45%;
-	margin-left: 100px;
+	margin-left: 120px;
 	/* visibility: hidden; */
 	display : none;
 	}
@@ -60,10 +61,15 @@
  	#select_one_board{
  		width: 45%;
 		 display : none; 
-		 margin-left: 100px;
+		 margin-left: 120px;
 	}
 	#speakers-details .container{
 		min-height: 600px;
+		margin-left: 7%;
+		margin-right: 3%;
+	}
+	div#center{
+		width : 100%;
 	}
 
   </style>
@@ -116,25 +122,20 @@
 
     <!-- ======= Speaker Details Sectionn ======= -->
     <section id="speakers-details">
-      <div class="container">
+      <div class="container" style="max-width: 1500px;">
         <div class="section-header">
           <h2>게시판</h2>
         </div>
 
         <div class="row" style="text-align: center;" id="center">
-			<div id="board" >
-				<table id = "list" border="1px">
+			<div id="board" class="table-responsive-vertical shadow-z-1" >
+				<table id = "list" class="table table-hover table-mc-light-blue">
 				<tr>
-						<td>번호</td>
-						<td>제목</td>
-						<td>작성자</td>
-						<td>시간</td>
-						<% 
-						if(info != null) {
-							if(info.getEmail().equals("admin")){ %>
-						
-						<td>삭제</td>
-						<%}} %>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>비고</th>
 					</tr>
 				<% for(int i=0; i<list.size();i++){ 
 					String companyName = memDAO.companyName(list.get(i).getCompany_id());
@@ -145,20 +146,19 @@
 						<td><a href="#" onclick="text_info('<%=list.get(i) %>', '<%=companyName %>')"> <%= list.get(i).getTitle() %></a></td>
 						<td><%=companyName %></td>
 						<td><%= list.get(i).getBoard_day() %></td>
+						<td style="width: 10%;">
 						<% if(info != null) {
 							
 							if(info.getCompany_id() == list.get(i).getCompany_id()){ %>
 						
-						<td style="width: 10%;"><a style="width: 100%;" href="RemoveBoard.do?board_num=<%=list.get(i).getBoard_num() %>">삭제</a></td>
-						<!-- FrontController로 이동해서 RemoveBoard 기능을 수행하시오
-						하나의 게시글을 삭제하고 나면 다시 boardMain.jsp로 이동하시오 -->
+						<a style="width: 100%;" href="RemoveBoard.do?board_num=<%=list.get(i).getBoard_num() %>">삭제</a>
+
 						
-						<%} }%>
+						<%} }%></td>
 					</tr>
 					<% } %>
 				
 				</table>
-				<!-- <a href="writerBoard.jsp"><button id="writer">글쓰기</button ></a> -->
 				<button id="writer" onclick="board_write()">글쓰기</button>
 				<button id="writer_close" onclick="board_hide()">닫기</button>
 			</div>
@@ -168,7 +168,7 @@
 				<table id="list" border="1px">
 					<tr>
 						<td>작성자</td>
-						<td><%= memDAO.companyName(info.getCompany_id()) %> </td>
+						<td><%=memDAO.companyName(info.getCompany_id()) %> </td>
 					</tr>
 					<tr>
 						<td>제목</td>
@@ -299,12 +299,7 @@
         &copy; Copyright <strong>TheEvent</strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <!--
-        All the links in the footer should remain intact.
-        You can delete the links only if you purchased the pro version.
-        Licensing information: https://bootstrapmade.com/license/
-        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=TheEvent
-      -->
+
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
@@ -411,7 +406,61 @@
 	/*   var selectOne = document.getElementById("board_select_one");
 	  selectOne.style.display = 'inline';
 	  */
-  }  
+  } 
+   
+   
+
+   $(document).ready(function () {
+     var table = $("#list");
+
+     // Table bordered
+     $("#table-bordered").change(function () {
+       var value = $(this).val();
+       table.removeClass("table-bordered").addClass(value);
+     });
+
+     // Table striped
+     $("#table-striped").change(function () {
+       var value = $(this).val();
+       table.removeClass("table-striped").addClass(value);
+     });
+
+     // Table hover
+     $("#table-hover").change(function () {
+       var value = $(this).val();
+       table.removeClass("table-hover").addClass(value);
+     });
+
+     // Table color
+     $("#table-color").change(function () {
+       var value = $(this).val();
+       table.removeClass(/^table-mc-/).addClass(value);
+     });
+   });
+
+   (function (removeClass) {
+     jQuery.fn.removeClass = function (value) {
+       if (value && typeof value.test === "function") {
+         for (var i = 0, l = this.length; i < l; i++) {
+           var elem = this[i];
+           if (elem.nodeType === 1 && elem.className) {
+             var classNames = elem.className.split(/\s+/);
+
+             for (var n = classNames.length; n--; ) {
+               if (value.test(classNames[n])) {
+                 classNames.splice(n, 1);
+               }
+             }
+             elem.className = jQuery.trim(classNames.join(" "));
+           }
+         }
+       } else {
+         removeClass.call(this, value);
+       }
+       return this;
+     };
+   })(jQuery.fn.removeClass);
+
   </script>
 </body>
 
