@@ -54,7 +54,7 @@ insert into rent_member(id, pw, name, companyName, phone) values (rent_id_seq.ne
 rent_seq.nextval, rent_seq.nextval, '실험', '0')
 
 insert into rent_car(req_num, request_company, response_company, location, first_day, last_day, carName,fuel,comments,rent_type,rent_status)
-values (req_num_seq.nextval, '당구공', null, '니집', '2020-11-11', '2020-11-12', '황마', '기름', '단기', '단기대차', 0);
+values (req_num_seq.nextval, '파워볼', '당구공', '니집', '2020-11-11', '2020-11-12', '황마', '기름', '단기', '단기대차', 1);
 
 select * from rent_car
 select * from rent_member

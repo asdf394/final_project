@@ -245,7 +245,7 @@ input[type="submit"].login:focus {
 									%>
 									<tr>
 									<tr>
-										<td><%=list1.get(i).getRequest_company()%></td>
+										<td><%=list1.get(i).getResponse_company()%></td>
 										<td><%=list1.get(i).getLocation()%></td>
 										<td><%=list1.get(i).getFirst_day()%></td>
 										<td><%=list1.get(i).getLast_day()%></td>
