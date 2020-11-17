@@ -1,3 +1,4 @@
+<%@page import="com.DTO.MemberDTO"%>
 <%@page import="com.DTO.RentDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.DAO.RentDAO"%>
@@ -109,39 +110,52 @@ input[type="submit"].login:hover {
 input[type="submit"].login:focus {
 	outline: none;
 }
-.logoc{
+
+.logoc {
 	width: 140px;
 }
 </style>
 <style type="text/css">
 @font-face {
-    font-family: 'GmarketSansBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'GmarketSansBold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
+
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
+
 @font-face {
-    font-family: 'GmarketSansLight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'GmarketSansLight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 </style>
 </head>
 <body>
+	<%
+		MemberDTO info = (MemberDTO) session.getAttribute("info");
+	%>
+
 	<!-- ======= Header ======= -->
 	<header id="header">
 		<div class="container">
 
 			<div id="logo" class="pull-left">
-				<a href="main.jsp" class="scrollto">
-				<img src="assets/img/carlogo.png" class="logoc" alt="" title=""></a>
+				<a href="main.jsp" class="scrollto"> <img
+					src="assets/img/carlogo.png" class="logoc" alt="" title=""></a>
 			</div>
 
 			<nav id="nav-menu-container">
@@ -161,17 +175,144 @@ input[type="submit"].login:focus {
 
 	<!-- ======= Intro Section ======= -->
 	<section id="intro" style="height: 70vh;">
-		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100" style="height: ">
-			<h1 style="margin-bottom: 100px; color: white; font-family: 'GmarketSansBold';">My Page</h2>
-				<ul style="list-style:none; padding-left: 0px;">
-            		<li style="float:left;"><a href="#schedule" class="about-btn scrollto" style="margin-right: 50px;">차량 대여현황</a></li>
-            		<li style="float:left;"><a href="#predict" class="about-btn scrollto" style="margin-right: 50px;">차량 수요예측</a></li>
-            		<li style="float:left;"><a href="#editInfo" class="about-btn scrollto">나의 정보수정 </a></li>
-         		</ul>
+		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100"
+			style="height:">
+			<h1
+				style="margin-bottom: 100px; color: white; font-family: 'GmarketSansBold';">
+				My Page
+				</h2>
+				<ul style="list-style: none; padding-left: 0px;">
+					<li style="float: left;"><a href="#schedule"
+						class="about-btn scrollto" style="margin-right: 50px;">차량 대여현황</a></li>
+					<li style="float: left;"><a href="#predict"
+						class="about-btn scrollto" style="margin-right: 50px;">차량 수요예측</a></li>
+					<li style="float: left;"><a href="#editInfo"
+						class="about-btn scrollto">나의 정보수정 </a></li>
+				</ul>
 		</div>
 	</section>
 	<!-- End Intro Section -->
 	<main id="main">
+		<!-- ======= Schedule Section ======= -->
+		<section id="schedule" class="section-with-bg">
+			<div class="container" data-aos="fade-up">
+				<div class="section-header">
+					<h2 style="font-family: 'GmarketSansBold';">차량 대여현황</h2>
+					<p style="font-family: 'GmarketSansMedium';">우리회사 렌터카 대여 현황을
+						확인해봅시다.</p>
+				</div>
+
+				<ul class="nav nav-tabs" role="tablist" data-aos="fade-up"
+					data-aos-delay="100">
+					<li class="nav-item"><a class="nav-link active" href="#day-1"
+						role="tab" data-toggle="tab">내가 대여받은 차량</a></li>
+					<li class="nav-item"><a class="nav-link" href="#day-2"
+						role="tab" data-toggle="tab">내가 대여해준 차량</a></li>
+
+				</ul>
+				<%
+				RentDAO dao = new RentDAO();
+				ArrayList<RentDTO> list1 = dao.rent_me(info);
+				ArrayList<RentDTO> list2 = dao.rent_you(info);
+				%>
+
+				<div class="tab-content row justify-content-center"
+					data-aos="fade-up" data-aos-delay="200">
+
+					<!-- Schdule Day 1 -->
+					<div role="tabpanel" class="col-lg-9 tab-pane fade show active"
+						id="day-1">
+						<div class="tbl-header">
+							<table cellpadding="0" cellspacing="0" border="0">
+								<thead>
+									<tr>
+										<th>업체명</th>
+										<th>업체주소</th>
+										<th>렌트일시</th>
+										<th>반납일시</th>
+										<th>차량종류</th>
+										<th>연료종류</th>
+										<th>렌트종류</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div class="tbl-content">
+							<table cellpadding="0" cellspacing="0" border="0">
+								<tbody>
+									<%
+										for (int i = 0; i < list1.size(); i++) {
+									%>
+									<tr>
+									<tr>
+										<td><%=list1.get(i).getRequest_company()%></td>
+										<td><%=list1.get(i).getLocation()%></td>
+										<td><%=list1.get(i).getFirst_day()%></td>
+										<td><%=list1.get(i).getLast_day()%></td>
+										<td><%=list1.get(i).getCarName()%></td>
+										<td><%=list1.get(i).getFuel()%></td>
+										<td><%=list1.get(i).getRent_type()%></td>
+									</tr>
+									<%
+										}
+									%>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- End Schdule Day 1 -->
+
+					<!-- Schdule Day 2 -->
+				<div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
+					<form action="DeleteRentService.do" method="post">
+						<div class="tbl-header">
+							<table cellpadding="0" cellspacing="0" border="0">
+								<thead>
+									<tr>
+										<th>업체명</th>
+										<th>업체주소</th>
+										<th>렌트일시</th>
+										<th>반납일시</th>
+										<th>차량종류</th>
+										<th>연료종류</th>
+										<th>렌트종류</th>
+										<th>특이사항</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div class="tbl-content">
+							<table cellpadding="0" cellspacing="0" border="0">
+								<tbody>
+									<%
+										for (int i = 0; i < list2.size(); i++) {
+									%>
+									<tr>
+										<td><%=list2.get(i).getRequest_company()%></td>
+										<td><%=list2.get(i).getLocation()%></td>
+										<td><%=list2.get(i).getFirst_day()%></td>
+										<td><%=list2.get(i).getLast_day()%></td>
+										<td><%=list2.get(i).getCarName()%></td>
+										<td><%=list2.get(i).getFuel()%></td>
+										<td><%=list2.get(i).getRent_type()%></td>
+										<td><%=list2.get(i).getComments()%></td>
+										<td><input type="submit" value="반납 확인"></td>
+										<input type="hidden" name="req_num" value="<%=list2.get(i).getReq_num()%>" >
+									</tr>
+									<%
+										}
+									%>
+								</tbody>
+							</table>
+						</div>
+					</form>
+				</div>
+					<!-- End Schdule Day 2 -->
+			</div>
+		</div>
+
+		</section>
+		<!-- End Schedule Section -->
 		<!-- ======= Speakers Section ======= -->
 		<section id="predict" style="margin-bottom: 100px;">
 			<div class="container" data-aos="fade-up" style="padding-top: 100px;">
@@ -228,133 +369,6 @@ input[type="submit"].login:focus {
 
 		</section>
 		<!-- End Speakers Section -->
-
-		<!-- ======= Schedule Section ======= -->
-		<section id="schedule" class="section-with-bg">
-			<div class="container" data-aos="fade-up">
-				<div class="section-header">
-					<h2 style="font-family: 'GmarketSansBold';">차량 대여현황</h2>
-					<p style="font-family: 'GmarketSansMedium';">우리회사 렌터카 대여 현황을 확인해봅시다.</p>
-				</div>
-
-				<ul class="nav nav-tabs" role="tablist" data-aos="fade-up"
-					data-aos-delay="100">
-					<li class="nav-item"><a class="nav-link active" href="#day-1"
-						role="tab" data-toggle="tab">단기 렌터카</a></li>
-					<li class="nav-item"><a class="nav-link" href="#day-2"
-						role="tab" data-toggle="tab">장기 렌터카</a></li>
-
-				</ul>
-				<%
-								RentDAO dao = new RentDAO();
-							ArrayList<RentDTO> list = dao.rentall();
-							%>
-
-
-
-				<div class="tab-content row justify-content-center"
-					data-aos="fade-up" data-aos-delay="200">
-
-					<!-- Schdule Day 1 -->
-					<div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
-						<div class="tbl-header">
-							<table cellpadding="0" cellspacing="0" border="0">
-								<thead>	<tr>
-												<th>업체명</th>
-												<th>업체주소</th>
-												<th>렌트일시</th>
-												<th>반납일시</th>
-												<th>차량종류</th>
-												<th>연료종류</th>
-												<th>렌트종류</th>
-												<th>특이사항</th>
-												<th>요청수락</th>
-											</tr>
-								</thead>
-							</table>
-						</div>
-						<div class="tbl-content">
-							<table cellpadding="0" cellspacing="0" border="0">
-								<tbody>
-										<%
-												for (int i = 0; i < list.size(); i++) {
-											%>
-										 	<tr>
-												<td><%=list.get(i).getRequest_company()%></td>
-												<td><%=list.get(i).getLocation()%></td>
-												<td><%=list.get(i).getFirst_day()%></td>
-												<td><%=list.get(i).getLast_day()%></td>
-												<td><%=list.get(i).getCarName()%></td>
-												<td><%=list.get(i).getFuel()%></td>
-												<td><%=list.get(i).getRent_type()%></td>
-												<td><%=list.get(i).getComments()%></td>
-												<td><input type="submit" value="수락"></td>
-											</tr> 
-											<%
-												}
-											%>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<!-- End Schdule Day 1 -->
-
-					<!-- Schdule Day 2 -->
-					<div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
-
-						<div class="tbl-header">
-							<table cellpadding="0" cellspacing="0" border="0">
-								<thead>
-										<tr>
-												<th>업체명</th>
-												<th>업체주소</th>
-												<th>렌트일시</th>
-												<th>반납일시</th>
-												<th>차량종류</th>
-												<th>연료종류</th>
-												<th>렌트종류</th>
-												<th>특이사항</th>
-												<th>요청수락</th>
-											</tr>
-								</thead>
-							</table>
-						</div>
-						<div class="tbl-content">
-							<table cellpadding="0" cellspacing="0" border="0">
-								<tbody>
-										<%
-												for (int i = 0; i < list.size(); i++) {
-											%>
-										 	<tr>
-												<td><%=list.get(i).getRequest_company()%></td>
-												<td><%=list.get(i).getLocation()%></td>
-												<td><%=list.get(i).getFirst_day()%></td>
-												<td><%=list.get(i).getLast_day()%></td>
-												<td><%=list.get(i).getCarName()%></td>
-												<td><%=list.get(i).getFuel()%></td>
-												<td><%=list.get(i).getRent_type()%></td>
-												<td><%=list.get(i).getComments()%></td>
-												<td><input type="submit" value="수락"></td>
-											</tr> 
-											<%
-												}
-											%>
-								</tbody>
-							</table>
-						</div>
-
-					</div>
-					<!-- End Schdule Day 2 -->
-
-
-
-				</div>
-
-			</div>
-
-		</section>
-		<!-- End Schedule Section -->
-
 		<!-- =======  F.A.Q Section ======= -->
 		<section id="editInfo" style="margin-bottom: 100px;">
 
@@ -397,7 +411,8 @@ input[type="submit"].login:focus {
 											name="companyName" /></td>
 									</tr>
 								</table>
-								<input type="submit" class="login pull-right" value="정보 변경하기" style="background-color: #f8234a; width: 200px">
+								<input type="submit" class="login pull-right" value="정보 변경하기"
+									style="background-color: #f8234a; width: 200px">
 							</form>
 					</div>
 				</div>

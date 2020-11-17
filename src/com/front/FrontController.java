@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.cont.DeleteRentService;
 import com.cont.JoinService;
 import com.cont.LoginService;
 import com.cont.LogoutService;
@@ -39,6 +40,7 @@ public class FrontController extends HttpServlet {
 		map.put("UploadBoardService.do", new UploadBoardService());
 		map.put("RemoveBoard.do", new RemoveBoard());
 		map.put("ResponseService.do", new ResponseService());
+		map.put("DeleteRentService.do", new DeleteRentService());
 	}
 
 

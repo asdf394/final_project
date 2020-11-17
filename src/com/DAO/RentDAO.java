@@ -71,34 +71,33 @@ public class RentDAO {
 	}
 
 	// car_info DB에 자동차 추가
-		public int responseCar(RentDTO dto) {
-			getConn();
-			String sql = "update rent_car set response_company = ?, rent_status = 1 where req_num = ?";
-		
-			try {
+	public int responseCar(RentDTO dto) {
+		getConn();
+		String sql = "update rent_car set response_company = ?, rent_status = 1 where req_num = ?";
 
-				pst = conn.prepareStatement(sql);
-				pst.setString(1, dto.getResponse_company());
-				pst.setInt(2, dto.getReq_num());
-				cnt = pst.executeUpdate();
+		try {
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return cnt;
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, dto.getResponse_company());
+			pst.setInt(2, dto.getReq_num());
+			cnt = pst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	
-	
+		return cnt;
+	}
+
 	public ArrayList<RentDTO> rentall() {
 		ArrayList<RentDTO> list = new ArrayList<RentDTO>();
-		
+
 		getConn();
-		
+
 		String sql = "select * from rent_car where response_company is null";
 		try {
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
-			
+
 			while (rs.next()) {
 				int req_num = rs.getInt(1);
 				String request_company = rs.getString(2);
@@ -112,7 +111,8 @@ public class RentDAO {
 				String rent_type = rs.getString(10);
 				int rent_status = rs.getInt(11);
 
-				RentDTO dto = new RentDTO(req_num, request_company, response_company, location, first_day, last_day, carName, fuel, comments, rent_type, rent_status);
+				RentDTO dto = new RentDTO(req_num, request_company, response_company, location, first_day, last_day,
+						carName, fuel, comments, rent_type, rent_status);
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -123,6 +123,96 @@ public class RentDAO {
 		}
 		return list;
 	}
-	
+
+	public ArrayList<RentDTO> rent_me(MemberDTO info) {
+		ArrayList<RentDTO> list = new ArrayList<RentDTO>();
+
+		getConn();
+
+		String sql = "select * from rent_car where request_company = ? and rent_status = 1";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, info.getCompanyName());
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				int req_num = rs.getInt(1);
+				String request_company = rs.getString(2);
+				String response_company = rs.getString(3);
+				String location = rs.getString(4);
+				String first_day = rs.getString(5);
+				String last_day = rs.getString(6);
+				String carName = rs.getString(7);
+				String fuel = rs.getString(8);
+				String comments = rs.getString(9);
+				String rent_type = rs.getString(10);
+				int rent_status = rs.getInt(11);
+
+				RentDTO dto = new RentDTO(req_num, request_company, response_company, location, first_day, last_day,
+						carName, fuel, comments, rent_type, rent_status);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
 	}
 
+	public ArrayList<RentDTO> rent_you(MemberDTO info) {
+		ArrayList<RentDTO> list = new ArrayList<RentDTO>();
+
+		getConn();
+
+		String sql = "select * from rent_car where response_company = ? and rent_status = 1 ";
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, info.getCompanyName());
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				int req_num = rs.getInt(1);
+				String request_company = rs.getString(2);
+				String response_company = rs.getString(3);
+				String location = rs.getString(4);
+				String first_day = rs.getString(5);
+				String last_day = rs.getString(6);
+				String carName = rs.getString(7);
+				String fuel = rs.getString(8);
+				String comments = rs.getString(9);
+				String rent_type = rs.getString(10);
+				int rent_status = rs.getInt(11);
+
+				RentDTO dto = new RentDTO(req_num, request_company, response_company, location, first_day, last_day,
+						carName, fuel, comments, rent_type, rent_status);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+
+	
+	public int deleteRent(RentDTO dto) {
+		getConn();
+		String sql = "delete from rent_car where req_num = ?";
+
+		try {
+
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, dto.getReq_num());
+			cnt = pst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+
+}

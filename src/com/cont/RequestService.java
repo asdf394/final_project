@@ -36,6 +36,7 @@ public class RequestService implements Command{
 		} else {
 			System.out.println("차량요청 실패");
 		}
+		
 		return "main.jsp";
 		
 	}
